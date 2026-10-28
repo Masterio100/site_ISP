@@ -1,0 +1,1767 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Курс для новичков — ДЭ 09.02.07</title>
+<meta name="description" content="Подробный курс с нуля: как подготовиться к демонстрационному экзамену по программированию, не написав раньше ни строчки кода.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html">← Гайд по ДЭ</a>
+  <nav class="nav" aria-label="Уроки" id="lessonNav"></nav>
+  <div class="topstatus">
+    <div class="progress-wrap" title="Пройдено уроков">
+      <div class="progress"><div id="lessonBar" class="progress-bar"></div></div>
+      <span id="lessonPct">0%</span>
+    </div>
+  </div>
+</header>
+
+<main class="lessons">
+
+<section class="hero">
+  <p class="eyebrow">Курс «с нуля»</p>
+  <h1>Как сдать демонстрационный экзамен, если вы ни разу не программировали</h1>
+  <p class="lead">Здесь всё объяснено простыми словами и по шагам: что поставить на компьютер, что такое база данных, как написать программу и куда её сдать. В конце вы получите работающий учебный проект — по нему можно потренироваться и разобрать каждую строчку.</p>
+  <div class="callout">
+    <b>Честно о сроках.</b> За один вечер программировать не научиться. Но экзамен проверяет вполне конкретный набор умений, и их можно натренировать за 3–4 недели ежедневных занятий по 1–2 часа. Идите по урокам по порядку, ничего не пропускайте и каждое задание делайте руками, а не просто читайте.
+  </div>
+  <div class="callout warn-box">
+    <b>Важно про учебный проект.</b> Это <i>тренировочный</i> пример на основе образца из КИМ (магазин обуви). На экзамене вы получите свою предметную область, свои таблицы, макет и стиль. Не заучивайте код — разберитесь, как он устроен, и вы сможете сделать то же самое для любой предметной области.
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l0" data-title="0. План">
+  <h2>Урок 0. С чего начать и как учиться</h2>
+  <p>Демонстрационный экзамен (ДЭ) — это не тест с вопросами. Вам дают задание, как на настоящей работе, и вы за отведённое время делаете из него готовый продукт: базу данных и программу. Проверяют результат: открывают вашу программу и смотрят, что она умеет.</p>
+
+  <h3>Что нужно уметь (всего пять навыков)</h3>
+  <ol class="big-list">
+    <li><b>Спроектировать базу данных</b> — разложить информацию по таблицам и связать их (урок 4–5).</li>
+    <li><b>Загрузить в неё данные</b> из файлов Excel (урок 5).</li>
+    <li><b>Написать программу с окнами</b>, которая показывает данные из базы (уроки 6–7).</li>
+    <li><b>Реализовать правила</b>: скидка, подсветка, поиск, сортировка, заказ (уроки 7–9).</li>
+    <li><b>Сдать работу</b> в репозиторий Git (урок 10).</li>
+  </ol>
+
+  <h3>План подготовки на 4 недели</h3>
+  <table class="plain wide">
+    <thead><tr><th>Неделя</th><th>Что делаем</th><th>Результат</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Уроки 1–3: установка, основы Python, запуск учебного проекта</td><td>Учебный проект запускается у вас на компьютере</td></tr>
+      <tr><td>2</td><td>Уроки 4–5: SQL и база данных, задание 1 по таймеру 50 минут</td><td>Умеете создать БД, загрузить данные, сделать ER-диаграмму и скрипт</td></tr>
+      <tr><td>3</td><td>Уроки 6–9: каталог, вход, заказ, управление заказами</td><td>Умеете написать каждый кусок программы сами, глядя в шпаргалку</td></tr>
+      <tr><td>4</td><td>Урок 10–11: Git, сдача и пробный экзамен целиком на 3 ч 30 мин</td><td>Прошли весь экзамен по таймеру и сдали в репозиторий</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Как правильно учиться</h3>
+  <ul>
+    <li><b>Печатайте код сами.</b> Копировать — быстро, но руки ничего не запоминают. Хотя бы первые два раза перепишите код вручную.</li>
+    <li><b>Ломайте и чините.</b> Измените число, удалите строку — посмотрите, какая ошибка появится. Это лучший способ понять код.</li>
+    <li><b>Не бойтесь красных сообщений.</b> Ошибка — это подсказка, а не приговор. Урок 11 учит их читать.</li>
+    <li><b>Таймер.</b> Начиная со второй недели решайте задания на время — на странице гайда есть таймер.</li>
+  </ul>
+  <label class="done"><input type="checkbox" data-lesson="l0"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l1" data-title="1. Словарь">
+  <h2>Урок 1. Словарь: слова, которые вы услышите</h2>
+  <p>Не пытайтесь выучить всё сразу. Пробегите глазами сейчас и возвращайтесь, когда встретите незнакомое слово.</p>
+  <div class="term-grid">
+    <div class="term"><b>Программа</b><span>Набор инструкций для компьютера. Мы пишем их на языке программирования.</span></div>
+    <div class="term"><b>Код</b><span>Текст программы. Лежит в файлах, например <code>main.py</code>.</span></div>
+    <div class="term"><b>Python</b><span>Язык программирования. Один из самых простых для начала. Файлы заканчиваются на <code>.py</code>.</span></div>
+    <div class="term"><b>Переменная</b><span>«Коробка с именем», в которой лежит значение: <code>price = 4500</code>.</span></div>
+    <div class="term"><b>Функция</b><span>Кусок кода с именем, который можно вызывать много раз. Например, функция «посчитай цену со скидкой».</span></div>
+    <div class="term"><b>Интерфейс</b><span>Всё, что видит пользователь: окна, кнопки, списки, поля ввода.</span></div>
+    <div class="term"><b>База данных (БД)</b><span>Организованное хранилище информации. Как набор связанных таблиц Excel, но надёжнее и быстрее.</span></div>
+    <div class="term"><b>СУБД</b><span>Программа, которая управляет базой данных. У нас — PostgreSQL.</span></div>
+    <div class="term"><b>Таблица</b><span>Список однотипных записей. Таблица «Товары», таблица «Пользователи».</span></div>
+    <div class="term"><b>Строка (запись)</b><span>Один элемент таблицы: один конкретный товар.</span></div>
+    <div class="term"><b>Столбец (поле)</b><span>Одно свойство записи: название, цена, размер.</span></div>
+    <div class="term"><b>Первичный ключ (PK)</b><span>Поле, которое однозначно определяет строку. Обычно номер: 1, 2, 3… Не повторяется.</span></div>
+    <div class="term"><b>Внешний ключ (FK)</b><span>Поле, которое ссылается на ключ другой таблицы. Так таблицы связывают: у товара есть «номер категории».</span></div>
+    <div class="term"><b>Связь</b><span>Отношение между таблицами: у одной категории много товаров («один-ко-многим»).</span></div>
+    <div class="term"><b>Нормальная форма (3НФ)</b><span>Правила, как разложить данные по таблицам без дублирования. Подробно в уроке 4.</span></div>
+    <div class="term"><b>SQL</b><span>Язык запросов к базе: «покажи все товары дороже 5000».</span></div>
+    <div class="term"><b>ER-диаграмма</b><span>Картинка: прямоугольники-таблицы и линии-связи между ними.</span></div>
+    <div class="term"><b>Транзакция</b><span>Группа действий «всё или ничего». Если на середине сбой, всё откатывается, как будто ничего не было.</span></div>
+    <div class="term"><b>Импорт</b><span>Загрузка данных из файла (Excel, CSV) в базу.</span></div>
+    <div class="term"><b>Скрипт БД</b><span>Файл <code>.sql</code> с командами, который воссоздаёт всю базу вместе с данными.</span></div>
+    <div class="term"><b>Репозиторий</b><span>Хранилище вашего проекта с историей изменений. Сдача — это загрузка файлов туда.</span></div>
+    <div class="term"><b>Git</b><span>Программа, которая работает с репозиторием: <code>commit</code>, <code>push</code>.</span></div>
+    <div class="term"><b>Коммит</b><span>«Снимок» проекта с вашим комментарием: «Задание 1 готово».</span></div>
+    <div class="term"><b>Отладка</b><span>Поиск и исправление ошибок в программе.</span></div>
+    <div class="term"><b>Исключение</b><span>Ошибка во время работы программы. Если её не обработать, программа закроется.</span></div>
+    <div class="term"><b>README.md</b><span>Файл-описание проекта в корне репозитория. Его читают первым.</span></div>
+  </div>
+  <label class="done"><input type="checkbox" data-lesson="l1"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l2" data-title="2. Установка">
+  <h2>Урок 2. Устанавливаем инструменты и запускаем учебный проект</h2>
+  <p>На экзамене всё уже установлено. Но готовиться вы будете дома, поэтому поставьте то же самое. Всё это бесплатно.</p>
+
+  <h3>Что ставим</h3>
+  <table class="plain wide">
+    <thead><tr><th>Программа</th><th>Зачем</th><th>Как поставить</th></tr></thead>
+    <tbody>
+      <tr><td>Python 3</td><td>Язык, на котором пишем</td><td>python.org → Downloads. В установщике <b>обязательно</b> поставьте галочку «Add python.exe to PATH».</td></tr>
+      <tr><td>PostgreSQL</td><td>СУБД, где живёт база</td><td>postgresql.org → Download → Windows. Запомните пароль пользователя <code>postgres</code>. Порт оставьте 5432. Вместе ставится pgAdmin и командные утилиты.</td></tr>
+      <tr><td>pgAdmin 4</td><td>Окно для работы с PostgreSQL</td><td>Ставится вместе с PostgreSQL.</td></tr>
+      <tr><td>VS Code</td><td>Редактор кода</td><td>code.visualstudio.com. Добавьте расширение «Python».</td></tr>
+      <tr><td>Git</td><td>Сдача в репозиторий</td><td>git-scm.com → Windows. Все настройки по умолчанию.</td></tr>
+      <tr><td>LibreOffice</td><td>Открыть Excel-файлы, сохранить в PDF</td><td>libreoffice.org</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Проверяем, что всё встало</h3>
+  <p>Откройте <b>Терминал</b> (в VS Code: меню «Терминал → Создать терминал») и по очереди выполните команды:</p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>python --version
+git --version
+pip --version</pre></div>
+  <p>Каждая должна вывести номер версии. Если пишет «не является внутренней или внешней командой» — Python или Git не добавлены в PATH: переустановите и поставьте нужную галочку.</p>
+  <p>Теперь поставим две библиотеки для Python (это готовые кусочки чужого кода, которые мы используем):</p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>pip install psycopg2-binary openpyxl</pre></div>
+  <ul>
+    <li><code>psycopg2-binary</code> — позволяет программе разговаривать с PostgreSQL.</li>
+    <li><code>openpyxl</code> — позволяет читать файлы Excel.</li>
+  </ul>
+  <p>Окна в программе мы рисуем библиотекой <code>tkinter</code> — она уже входит в Python, ставить её не надо.</p>
+
+  <h3>Запускаем учебный проект — 6 шагов</h3>
+  <ol class="steps">
+    <li><b>Создайте базу.</b> Откройте pgAdmin, введите пароль. Слева раскройте «Servers → PostgreSQL». Правая кнопка на «Databases» → «Create → Database…». Имя: <code>shoe_store</code>. Нажмите «Save».</li>
+    <li><b>Создайте таблицы.</b> Правая кнопка на <code>shoe_store</code> → «Query Tool». Откройте файл <code>example/sql/schema.sql</code>, скопируйте всё, вставьте в окно запроса и нажмите F5 (или кнопку ▶). Внизу должно появиться «Query returned successfully».</li>
+    <li><b>Загрузите данные.</b> Очистите окно запроса, вставьте содержимое <code>example/sql/sample_data.sql</code>, F5.</li>
+    <li><b>Укажите пароль в программе.</b> Откройте <code>example/app/config.py</code> и в <code>DB_SETTINGS</code> впишите свой пароль от PostgreSQL.</li>
+    <li><b>Запустите.</b> В терминале:
+      <div class="code-block"><button class="copy" type="button">Копировать</button><pre>cd example/app
+python main.py</pre></div>
+    </li>
+    <li><b>Войдите.</b> Логины для проверки: <code>client1</code> (клиент), <code>manager1</code> (менеджер), <code>admin1</code> (администратор). Пароль не нужен.</li>
+  </ol>
+  <div class="callout">Если программа не открылась или выдала ошибку — не паникуйте. Смотрите урок 11: там разобраны самые частые причины (неверный пароль, база не создана, не поставлена библиотека).</div>
+  <label class="done"><input type="checkbox" data-lesson="l2"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l3" data-title="3. Python">
+  <h2>Урок 3. Основы Python — ровно то, что нужно для экзамена</h2>
+  <p>Создайте в VS Code файл <code>practice.py</code> и запускайте его командой <code>python practice.py</code>. Пробуйте каждый пример сами.</p>
+
+  <h3>3.1. Переменные и вывод на экран</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>product_name = "Кроссовки"
+price = 4500
+print(product_name)
+print("Цена:", price)</pre></div>
+  <p>Знак <code>=</code> здесь значит «положи в коробку», а не «равно». Слова <code>product_name</code> и <code>price</code> придумываем мы — это имена. Правило из экзамена: имена должны объяснять, что внутри (<code>price</code>, а не <code>x</code>), и писаться в одном стиле: на Python — <code>snake_case</code> (слова строчными через подчёркивание).</p>
+
+  <h3>3.2. Числа, текст, да/нет</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>quantity = 3            # целое число
+price = 4500.50         # число с дробной частью
+name = "Ботинки"        # текст в кавычках
+has_discount = True     # да (True) или нет (False)
+total = price * quantity
+print(total)</pre></div>
+  <p>Всё после <code>#</code> — комментарий. Компьютер его пропускает; он нужен людям. На экзамене комментарии нужны <b>только к неочевидному</b>: не пишите <code># умножаем</code> рядом с <code>*</code>.</p>
+
+  <h3>3.3. Условия: if</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>total_quantity = 4
+
+if total_quantity &gt; 5:
+    label = "много"
+else:
+    label = "мало"
+
+print(label)</pre></div>
+  <p>Отступ в 4 пробела <b>обязателен</b>: по нему Python понимает, что относится к <code>if</code>. Сравнения: <code>&gt;</code> больше, <code>&lt;</code> меньше, <code>&gt;=</code> не меньше, <code>&lt;=</code> не больше, <code>==</code> равно, <code>!=</code> не равно. Обратите внимание: «если <i>больше</i> пяти — много», а «пять или менее — мало». Именно так в задании: 5 — это ещё «мало».</p>
+  <p>Можно объединять: <code>and</code> (и), <code>or</code> (или), <code>not</code> (не).</p>
+
+  <h3>3.4. Списки и циклы</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>prices = [4500, 8900, 1900]
+
+for price in prices:
+    print(price)
+
+print(len(prices))      # сколько элементов
+prices.append(6200)     # добавить в конец</pre></div>
+  <p>Цикл <code>for</code> берёт элементы списка по одному и выполняет вложенный блок для каждого. Каталог товаров в программе — это как раз список, и мы идём по нему циклом, чтобы нарисовать каждую карточку.</p>
+
+  <h3>3.5. Словари — «карточки» с полями</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>product = {
+    "product_name": "Кроссовки Runner",
+    "price": 4500,
+    "category_name": "Кроссовки",
+}
+
+print(product["product_name"])
+product["price"] = 4000</pre></div>
+  <p>Один товар из базы приходит в программу именно как словарь: по названию поля получаем значение.</p>
+
+  <h3>3.6. Функции</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>def stock_label(total_quantity):
+    if total_quantity &gt; 5:
+        return "много"
+    return "мало"
+
+print(stock_label(12))   # много
+print(stock_label(5))    # мало</pre></div>
+  <p><code>def</code> объявляет функцию. В скобках — то, что ей передают (аргументы). <code>return</code> — то, что она возвращает. Хорошая функция делает одно дело и называется глаголом: <code>calc_final_price</code>, <code>stock_label</code>.</p>
+  <p><b>Задание для самопроверки:</b> напишите функцию <code>calc_final_price(price, has_discount)</code>, которая возвращает цену, уменьшенную на 25%, если <code>has_discount</code> равно <code>True</code>, иначе — прежнюю цену. Сверьтесь с файлом <code>rules.py</code> ниже.</p>
+
+  <h3>3.7. Обработка ошибок: try / except</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>text = "abc"
+
+try:
+    quantity = int(text)
+except ValueError:
+    print("Введите число")</pre></div>
+  <p>Если внутри <code>try</code> случится ошибка, программа не упадёт, а выполнит блок <code>except</code>. Так мы защищаем приложение: на экзамене проверяют, что программа <b>не закрывается аварийно</b> при неправильном вводе или недоступной базе.</p>
+
+  <h3>3.8. Импорты и несколько файлов</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>import rules                      # подключили файл rules.py
+print(rules.stock_label(7))       # вызвали функцию из него
+
+from decimal import Decimal       # взяли одну вещь из стандартной библиотеки</pre></div>
+  <p>Большую программу делят на файлы по смыслу: правила — в <code>rules.py</code>, работа с базой — в <code>database.py</code>, окна — в <code>*_page.py</code>. Так и проверяющему понятнее, и вам проще искать ошибки.</p>
+
+  <h3>3.9. Деньги: почему Decimal</h3>
+  <p>Обычные дробные числа считают с мелкими неточностями (<code>0.1 + 0.2</code> даёт <code>0.30000000000000004</code>). Для денег используют <code>Decimal</code>: <code>Decimal("4500.00") * Decimal("0.75")</code> даёт ровно <code>3375.0000</code>. База PostgreSQL отдаёт цены типом <code>Decimal</code> — и если умножить его на обычное дробное число <code>0.75</code>, Python выдаст ошибку. Поэтому в учебном коде скидка записана как <code>Decimal("0.25")</code>.</p>
+
+  <h3>Мини-тренировка</h3>
+  <ol>
+    <li>Составьте список из пяти цен и выведите циклом только те, что больше 3000.</li>
+    <li>Сделайте словарь товара и функцию, которая принимает его и возвращает строку <code>"Название — цена ₽"</code>.</li>
+    <li>Запросите у пользователя число через <code>input()</code> и обработайте ошибку, если ввели не число.</li>
+  </ol>
+  <label class="done"><input type="checkbox" data-lesson="l3"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l4" data-title="4. БД и SQL">
+  <h2>Урок 4. Базы данных и SQL с нуля</h2>
+
+  <h3>4.1. Зачем таблицы, если есть один большой Excel?</h3>
+  <p>Представьте, что мы записываем заказы в одну таблицу:</p>
+  <table class="plain wide">
+    <thead><tr><th>Дата</th><th>Клиент</th><th>Товар</th><th>Категория</th><th>Производитель</th><th>Размер</th></tr></thead>
+    <tbody>
+      <tr><td>01.10</td><td>Иванов И.И.</td><td>Кроссовки Runner</td><td>Кроссовки</td><td>Nord Steps</td><td>42</td></tr>
+      <tr><td>01.10</td><td>Иванов И.И.</td><td>Ботинки Trail</td><td>Ботинки</td><td>Альпина</td><td>43</td></tr>
+      <tr><td>05.10</td><td>Петрова М.С.</td><td>Кроссовки Runner</td><td>Кроссовки</td><td>Nord Steps</td><td>41</td></tr>
+    </tbody>
+  </table>
+  <p>Проблемы: «Кроссовки Runner» и «Nord Steps» повторяются; если производитель переименуется, править придётся везде; опечатка («Кросовки») создаст «новую» категорию. Решение: каждую сущность хранить <b>один раз</b> в своей таблице, а в остальных местах ссылаться на неё по номеру.</p>
+
+  <h3>4.2. Ключи и связи</h3>
+  <ul>
+    <li><b>Первичный ключ (PK)</b> — уникальный номер строки. В таблице <code>category</code> это <code>category_id</code>.</li>
+    <li><b>Внешний ключ (FK)</b> — поле-ссылка. В таблице <code>product</code> поле <code>category_id</code> указывает на строку в <code>category</code>.</li>
+    <li>СУБД следит за этим: она не даст создать товар с несуществующей категорией. Это и есть <b>ссылочная целостность</b>.</li>
+  </ul>
+  <div class="diagram">
+    <pre>category (category_id PK, category_name)
+     │ 1
+     │
+     ▼ много
+product (product_id PK, product_name, price, category_id FK, manufacturer_id FK)
+     │ 1
+     ▼ много
+product_size (product_id PK+FK, size_value PK, quantity)
+     │ 1
+     ▼ много
+order_item (order_id PK+FK, product_id PK+FK, size_value PK+FK, quantity)
+     ▲ много
+     │ 1
+customer_order (order_id PK, order_date, customer_id FK → app_user)</pre>
+  </div>
+
+  <h3>4.3. Третья нормальная форма простыми словами</h3>
+  <p>Задание требует 3НФ. Это три правила:</p>
+  <ol>
+    <li><b>1НФ — в ячейке одно значение.</b> Плохо: в поле «Размеры» записано «41, 42, 43». Хорошо: отдельная строка на каждый размер.</li>
+    <li><b>2НФ — каждое поле зависит от <i>всего</i> ключа.</b> Если ключ составной (товар + размер), то в этой таблице нельзя хранить название товара: оно зависит только от товара. Название хранится в <code>product</code>, а в <code>product_size</code> — только остаток.</li>
+    <li><b>3НФ — поля зависят от ключа, а не друг от друга.</b> Плохо: в таблице <code>app_user</code> хранить и <code>role_id</code>, и текст «Администратор» — текст зависит от роли, а не от пользователя. Хорошо: роль в своей таблице <code>role</code>, у пользователя только <code>role_id</code>.</li>
+  </ol>
+  <div class="tip"><b>Быстрая проверка:</b> если одно и то же слово (категория, производитель, роль, статус) в таблице повторяется много раз — вынесите его в справочник.</div>
+
+  <h3>4.4. Имена таблиц и полей</h3>
+  <ul>
+    <li>Один стиль на всю базу: <code>snake_case</code> (маленькие буквы, слова через <code>_</code>).</li>
+    <li>Имя понятно без пояснений: <code>manufacturer_name</code>, а не <code>mn</code>.</li>
+    <li>Ключ — <code>таблица_id</code>: <code>product_id</code>, <code>order_id</code>.</li>
+    <li>Не смешивайте стили (<code>OrderDate</code> рядом с <code>order_date</code>) — это типичная потеря баллов.</li>
+  </ul>
+
+  <h3>4.5. Основные команды SQL</h3>
+  <p>SQL читается почти как английский. Вводить команды можно в pgAdmin → Query Tool. В конце команды ставится <code>;</code>.</p>
+
+  <p><b>Показать данные — SELECT</b></p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>SELECT * FROM product;                        -- все столбцы, все строки
+SELECT product_name, price FROM product;      -- только нужные столбцы
+SELECT * FROM product WHERE price &gt; 5000;     -- с условием
+SELECT * FROM product ORDER BY price DESC;    -- сортировка по убыванию
+SELECT * FROM product WHERE product_name ILIKE '%кросс%';  -- поиск, регистр не важен</pre></div>
+
+  <p><b>Объединить таблицы — JOIN.</b> Вместо номера категории хотим видеть её название:</p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>SELECT p.product_name, c.category_name
+FROM product p
+JOIN category c ON c.category_id = p.category_id;</pre></div>
+  <p><code>p</code> и <code>c</code> — короткие псевдонимы таблиц. <code>ON</code> говорит, по какому полю связать.</p>
+
+  <p><b>Посчитать — SUM, COUNT, GROUP BY.</b> Сколько всего пар каждой модели:</p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>SELECT p.product_name, SUM(ps.quantity) AS total_quantity
+FROM product p
+LEFT JOIN product_size ps ON ps.product_id = p.product_id
+GROUP BY p.product_id;</pre></div>
+  <p><code>GROUP BY</code> склеивает строки одной модели, <code>SUM</code> складывает остатки по размерам. <code>LEFT JOIN</code> оставляет и те модели, у которых размеров ещё нет.</p>
+
+  <p><b>Добавить — INSERT</b>, <b>изменить — UPDATE</b>, <b>удалить — DELETE</b></p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>INSERT INTO category (category_name) VALUES ('Тапочки');
+UPDATE product SET price = 4000 WHERE product_id = 1;
+DELETE FROM category WHERE category_name = 'Тапочки';</pre></div>
+  <div class="callout warn-box"><b>Никогда не забывайте WHERE</b> в UPDATE и DELETE: без него изменится или удалится <i>всё</i> в таблице.</div>
+
+  <p><b>«Есть ли заказы в прошлом месяце» — NOT EXISTS.</b> Именно такая проверка нужна для скидки:</p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>SELECT p.product_name,
+       NOT EXISTS (
+           SELECT 1
+           FROM order_item oi
+           JOIN customer_order o ON o.order_id = oi.order_id
+           WHERE oi.product_id = p.product_id
+             AND o.order_date &gt;= date_trunc('month', CURRENT_DATE) - INTERVAL '1 month'
+             AND o.order_date &lt;  date_trunc('month', CURRENT_DATE)
+       ) AS has_discount
+FROM product p;</pre></div>
+  <p>Разбор: <code>date_trunc('month', CURRENT_DATE)</code> — первое число текущего месяца. Минус один месяц — первое число прошлого. Заказ попадает в «прошлый месяц», если его дата не раньше первого числа прошлого месяца и строго раньше первого числа текущего. <code>EXISTS</code> спрашивает «есть ли хоть одна такая строка»; <code>NOT EXISTS</code> — «нет ни одной». Если заказов не было — <code>has_discount</code> равно <code>true</code>.</p>
+
+  <p>Параметры в коде мы подставляем через <code>%s</code>, а не склеиваем строки: так программу нельзя «взломать» через поле ввода (это называется SQL-инъекция).</p>
+
+  <h3>4.6. Мини-тренировка в pgAdmin</h3>
+  <ol>
+    <li>Выведите все товары категории «Кроссовки» (нужен JOIN или подзапрос).</li>
+    <li>Выведите ФИО всех клиентов и даты их заказов.</li>
+    <li>Найдите товары, остаток которых в сумме не больше трёх.</li>
+    <li>Увеличьте цену всех сандалий на 10% (подсказка: <code>price = price * 1.10</code>).</li>
+  </ol>
+  <label class="done"><input type="checkbox" data-lesson="l4"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l5" data-title="5. Задание 1">
+  <h2>Урок 5. Задание 1 пошагово: база данных (50 минут)</h2>
+  <p>Цель: схема в 3НФ, данные из файлов загружены, ER-диаграмма в PDF, скрипт БД. Идите строго по шагам — вот примерная раскладка по времени.</p>
+  <table class="plain wide">
+    <thead><tr><th>Шаг</th><th>Минуты</th></tr></thead>
+    <tbody>
+      <tr><td>Прочитать Приложение 1 и нарисовать таблицы на бумаге</td><td>10</td></tr>
+      <tr><td>Создать БД и таблицы</td><td>10</td></tr>
+      <tr><td>Подготовить и загрузить данные, проверить</td><td>15</td></tr>
+      <tr><td>ER-диаграмма в PDF</td><td>5</td></tr>
+      <tr><td>Скрипт БД + проверка + загрузка в репозиторий</td><td>10</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Шаг 1. Читаем предметную область и рисуем таблицы</h3>
+  <ol class="steps">
+    <li>Возьмите карандаш. Подчёркивайте в тексте Приложения 1 <b>существительные</b> — это кандидаты в таблицы: пользователь, роль, товар, категория, производитель, размер, заказ.</li>
+    <li>Подчёркивайте <b>характеристики</b> — это поля: у товара название, описание, состав, цена, изображение.</li>
+    <li>Определите связи словами: «У одной категории много товаров», «В одном заказе много позиций».</li>
+    <li>Всё, что может повторяться (категория, производитель, роль, поставщик), — в <b>отдельную таблицу-справочник</b>.</li>
+    <li>Не нужны все сущности предметной области: только те, что участвуют в заказе обуви.</li>
+    <li>Тонкое место — остаток: он хранится <b>не у модели, а у пары «модель + размер»</b>. Поэтому нужна таблица <code>product_size</code> с составным ключом (<code>product_id</code>, <code>size_value</code>).</li>
+    <li>Позиция заказа ссылается на эту пару: так нельзя заказать несуществующий размер.</li>
+  </ol>
+  <p>Схема из учебного проекта (файл <code>example/sql/schema.sql</code>) — разберите её:</p>
+  <details class="file"><summary>schema.sql — таблицы</summary>
+    <div class="code-block"><button class="copy" type="button">Копировать</button><pre>CREATE TABLE role (
+    role_id    INTEGER GENERATED ALWAYS AS IDENTITY,
+    role_name  VARCHAR(50) NOT NULL,
+    CONSTRAINT pk_role PRIMARY KEY (role_id),
+    CONSTRAINT uq_role_name UNIQUE (role_name)
+);
+
+CREATE TABLE app_user (
+    user_id     INTEGER GENERATED ALWAYS AS IDENTITY,
+    login       VARCHAR(100) NOT NULL,
+    last_name   VARCHAR(100) NOT NULL,
+    first_name  VARCHAR(100) NOT NULL,
+    patronymic  VARCHAR(100),
+    role_id     INTEGER NOT NULL,
+    CONSTRAINT pk_app_user PRIMARY KEY (user_id),
+    CONSTRAINT uq_app_user_login UNIQUE (login),
+    CONSTRAINT fk_app_user_role FOREIGN KEY (role_id)
+        REFERENCES role (role_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE category (
+    category_id    INTEGER GENERATED ALWAYS AS IDENTITY,
+    category_name  VARCHAR(100) NOT NULL,
+    CONSTRAINT pk_category PRIMARY KEY (category_id),
+    CONSTRAINT uq_category_name UNIQUE (category_name)
+);
+
+CREATE TABLE manufacturer (
+    manufacturer_id    INTEGER GENERATED ALWAYS AS IDENTITY,
+    manufacturer_name  VARCHAR(150) NOT NULL,
+    CONSTRAINT pk_manufacturer PRIMARY KEY (manufacturer_id),
+    CONSTRAINT uq_manufacturer_name UNIQUE (manufacturer_name)
+);
+
+CREATE TABLE product (
+    product_id       INTEGER GENERATED ALWAYS AS IDENTITY,
+    product_name     VARCHAR(200) NOT NULL,
+    description      TEXT,
+    composition      VARCHAR(300),
+    price            NUMERIC(10, 2) NOT NULL,
+    image_file       VARCHAR(200),
+    category_id      INTEGER NOT NULL,
+    manufacturer_id  INTEGER NOT NULL,
+    CONSTRAINT pk_product PRIMARY KEY (product_id),
+    CONSTRAINT ck_product_price CHECK (price &gt;= 0),
+    CONSTRAINT fk_product_category FOREIGN KEY (category_id)
+        REFERENCES category (category_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_product_manufacturer FOREIGN KEY (manufacturer_id)
+        REFERENCES manufacturer (manufacturer_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE product_size (
+    product_id  INTEGER NOT NULL,
+    size_value  NUMERIC(4, 1) NOT NULL,
+    quantity    INTEGER NOT NULL DEFAULT 0,
+    CONSTRAINT pk_product_size PRIMARY KEY (product_id, size_value),
+    CONSTRAINT ck_product_size_quantity CHECK (quantity &gt;= 0),
+    CONSTRAINT fk_product_size_product FOREIGN KEY (product_id)
+        REFERENCES product (product_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE customer_order (
+    order_id     INTEGER GENERATED ALWAYS AS IDENTITY,
+    order_date   DATE NOT NULL DEFAULT CURRENT_DATE,
+    customer_id  INTEGER NOT NULL,
+    CONSTRAINT pk_customer_order PRIMARY KEY (order_id),
+    CONSTRAINT fk_customer_order_user FOREIGN KEY (customer_id)
+        REFERENCES app_user (user_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE order_item (
+    order_id    INTEGER NOT NULL,
+    product_id  INTEGER NOT NULL,
+    size_value  NUMERIC(4, 1) NOT NULL,
+    quantity    INTEGER NOT NULL,
+    CONSTRAINT pk_order_item PRIMARY KEY (order_id, product_id, size_value),
+    CONSTRAINT ck_order_item_quantity CHECK (quantity &gt; 0),
+    CONSTRAINT fk_order_item_order FOREIGN KEY (order_id)
+        REFERENCES customer_order (order_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_order_item_product_size FOREIGN KEY (product_id, size_value)
+        REFERENCES product_size (product_id, size_value) ON UPDATE CASCADE ON DELETE RESTRICT
+);</pre></div>
+  </details>
+  <p>Как читать один блок:</p>
+  <div class="code-block"><pre>CREATE TABLE product_size (                       -- создать таблицу
+    product_id  INTEGER NOT NULL,                  -- целое число, пустым быть не может
+    size_value  NUMERIC(4, 1) NOT NULL,            -- число вида 42 или 38.5
+    quantity    INTEGER NOT NULL DEFAULT 0,        -- остаток, по умолчанию 0
+    CONSTRAINT pk_product_size PRIMARY KEY (product_id, size_value),   -- ключ из двух полей
+    CONSTRAINT ck_product_size_quantity CHECK (quantity &gt;= 0),         -- остаток не отрицательный
+    CONSTRAINT fk_product_size_product FOREIGN KEY (product_id)         -- внешний ключ
+        REFERENCES product (product_id) ON UPDATE CASCADE ON DELETE CASCADE
+);</pre></div>
+  <ul>
+    <li><code>NOT NULL</code> — поле обязательно.</li>
+    <li><code>CONSTRAINT имя ...</code> — ограничение с <b>явным именем</b> (на экзамене просят осмысленные имена и не отдавать всё на автогенерацию).</li>
+    <li><code>ON DELETE CASCADE</code> — при удалении товара его размеры удалятся вместе с ним. <code>ON DELETE RESTRICT</code> — запретить удалять, пока есть связанные записи (так для категорий и пользователей).</li>
+    <li><code>GENERATED ALWAYS AS IDENTITY</code> — база сама нумерует строки 1, 2, 3…</li>
+  </ul>
+
+  <h3>Шаг 2. Создаём БД и таблицы</h3>
+  <p>Как в уроке 2: pgAdmin → создать базу → Query Tool → вставить скрипт → F5. Создавайте таблицы в таком порядке, чтобы ссылки было на что делать: сначала справочники (<code>role</code>, <code>category</code>, <code>manufacturer</code>), потом таблицы, которые на них ссылаются.</p>
+  <div class="tip">Ошиблись в структуре — не чините по одному полю: удалите всё командой <code>DROP SCHEMA public CASCADE; CREATE SCHEMA public;</code> и выполните скрипт заново. Быстрее и надёжнее.</div>
+
+  <h3>Шаг 3. Загружаем данные из Excel</h3>
+  <p>Заказчик даёт файлы <code>.xlsx</code> с пометкой «import». Данные в них <b>не идеальны</b>: лишние пробелы, дубли, запятая вместо точки, названия вместо номеров. Поэтому действуем так:</p>
+  <ol class="steps">
+    <li><b>Посмотрите файлы.</b> Откройте каждый в LibreOffice. Запишите: какие столбцы, сколько строк (последний номер строки минус заголовок), есть ли пустые ячейки и дубли.</li>
+    <li><b>Создайте промежуточные таблицы</b> <code>staging_*</code> со <b>всеми полями текстовыми</b>. В них можно загрузить что угодно — не споткнётесь на типах.
+      <div class="code-block"><button class="copy" type="button">Копировать</button><pre>CREATE TABLE staging_product (
+    product_name      TEXT,
+    category_name     TEXT,
+    manufacturer_name TEXT,
+    description       TEXT,
+    composition       TEXT,
+    price             TEXT,
+    image_file        TEXT
+);</pre></div>
+      (Колонки — пример. Берите те, что в вашем файле, в том же порядке.)</li>
+    <li><b>Загрузите файл в staging.</b> Способ А — мастер pgAdmin: сохраните лист как CSV (LibreOffice → «Сохранить как» → «Текст CSV», кодировка UTF-8), затем правая кнопка на таблице → «Import/Export Data…», формат CSV, галочка «Header». Способ Б — скрипт на Python:
+      <div class="code-block"><button class="copy" type="button">Копировать</button><pre>import openpyxl
+import psycopg2
+
+workbook = openpyxl.load_workbook("products_import.xlsx")
+sheet = workbook.active
+
+connection = psycopg2.connect(dbname="shoe_store", user="postgres", password="ВАШ_ПАРОЛЬ", host="localhost")
+with connection:
+    with connection.cursor() as cursor:
+        for row in sheet.iter_rows(min_row=2, values_only=True):    # min_row=2 пропускает заголовок
+            cursor.execute(
+                "INSERT INTO staging_product VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                [None if cell is None else str(cell) for cell in row],
+            )
+connection.close()</pre></div>
+      Количество <code>%s</code> должно совпадать с числом столбцов.</li>
+    <li><b>Разложите данные по справочникам.</b> Порядок важен: сначала всё, на что будут ссылаться.
+      <div class="code-block"><button class="copy" type="button">Копировать</button><pre>INSERT INTO category (category_name)
+SELECT DISTINCT TRIM(category_name) FROM staging_product WHERE category_name IS NOT NULL;
+
+INSERT INTO manufacturer (manufacturer_name)
+SELECT DISTINCT TRIM(manufacturer_name) FROM staging_product WHERE manufacturer_name IS NOT NULL;
+
+INSERT INTO product (product_name, description, composition, price, image_file, category_id, manufacturer_id)
+SELECT TRIM(s.product_name), s.description, s.composition, REPLACE(s.price, ',', '.')::NUMERIC,
+       NULLIF(TRIM(s.image_file), ''), c.category_id, m.manufacturer_id
+FROM staging_product s
+JOIN category c ON c.category_name = TRIM(s.category_name)
+JOIN manufacturer m ON m.manufacturer_name = TRIM(s.manufacturer_name);</pre></div>
+      <ul>
+        <li><code>DISTINCT</code> — убрать дубли; <code>TRIM</code> — убрать пробелы по краям.</li>
+        <li><code>REPLACE(price, ',', '.')::NUMERIC</code> — заменить запятую на точку и превратить текст в число.</li>
+        <li><code>NULLIF(x, '')</code> — пустой текст превращает в «ничего» (NULL), чтобы программа подставила картинку-заглушку.</li>
+        <li><code>JOIN</code> подставляет вместо названия категории её номер.</li>
+      </ul>
+    </li>
+    <li><b>Последовательность загрузки:</b> роли → категории и производители → пользователи → товары → размеры/остатки → заказы → состав заказов. Заказы нельзя загрузить раньше товаров.</li>
+    <li><b>Проверьте количество строк.</b>
+      <div class="code-block"><button class="copy" type="button">Копировать</button><pre>SELECT 'product' AS table_name, COUNT(*) FROM product
+UNION ALL SELECT 'app_user', COUNT(*) FROM app_user
+UNION ALL SELECT 'customer_order', COUNT(*) FROM customer_order;</pre></div>
+      Сравните с числом строк в Excel. Не совпало — ищите, какие строки потерялись (чаще всего из-за пробелов или разных написаний названий в <code>JOIN</code>).</li>
+  </ol>
+
+  <h3>Шаг 4. ER-диаграмма в PDF</h3>
+  <p>Требования: все таблицы, связи, атрибуты, ключи; типы данных не нужны; формат — PDF.</p>
+  <ul>
+    <li><b>pgAdmin:</b> правая кнопка на базе → «ERD For Database» (в более старых версиях — «Generate ERD»). Расставьте таблицы так, чтобы линии не путались, сохраните как изображение (кнопка скачивания на панели).</li>
+    <li><b>DBeaver:</b> раскройте базу → Schemas → public → Tables, выделите все таблицы, правая кнопка → «View Diagram». Затем «Save as image».</li>
+    <li><b>draw.io:</b> можно нарисовать вручную и экспортировать сразу в PDF (File → Export as → PDF).</li>
+    <li><b>Картинку → в PDF:</b> вставьте в LibreOffice Writer и экспортируйте (кнопка «Экспорт в PDF»), либо напечатайте на «Microsoft Print to PDF».</li>
+  </ul>
+  <p>Откройте получившийся PDF и убедитесь: видны все таблицы, на ключах есть пометки PK/FK, линии связей идут к нужным таблицам.</p>
+
+  <h3>Шаг 5. Скрипт БД со структурой <u>и данными</u></h3>
+  <p>Скрипт — это текстовый файл, по которому можно воссоздать базу с нуля. Самый надёжный способ — утилита <code>pg_dump</code>. В терминале (путь к ней зависит от версии PostgreSQL — поправьте):</p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>"C:\Program Files\PostgreSQL\16\bin\pg_dump.exe" -U postgres -d shoe_store --inserts --no-owner -f db_script.sql</pre></div>
+  <ul>
+    <li><code>--inserts</code> — данные выгрузятся понятными командами <code>INSERT</code> (читаемо для эксперта).</li>
+    <li><code>--no-owner</code> — не привязывать к конкретному пользователю.</li>
+    <li>Потребуется пароль, который вы задали при установке.</li>
+  </ul>
+  <p><b>Обязательно проверьте скрипт:</b> создайте пустую базу <code>shoe_store_test</code>, выполните в ней <code>db_script.sql</code> и посмотрите, что таблицы и данные на месте. Скрипт только со структурой (без INSERT) — типичная ошибка, за которую снимают баллы.</p>
+  <p>Если вы решаете на 1С, вместо скрипта сохраняется файл конфигурации с данными <code>.dt</code>.</p>
+
+  <h3>Чек-лист перед тем, как перейти к заданию 2</h3>
+  <ul class="check-plain">
+    <li>В БД все нужные таблицы, нет дублей справочных значений.</li>
+    <li>Первичные и внешние ключи заданы, у ограничений есть имена.</li>
+    <li>Имена в одном стиле.</li>
+    <li>Строк в таблицах столько же, сколько в Excel.</li>
+    <li>ER-диаграмма — PDF, видны ключи.</li>
+    <li>Скрипт содержит INSERT и разворачивается на пустой базе.</li>
+    <li>Всё закоммичено и отправлено в репозиторий (урок 10).</li>
+  </ul>
+  <label class="done"><input type="checkbox" data-lesson="l5"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l6" data-title="6. Задание 2">
+  <h2>Урок 6. Задание 2 пошагово: приложение и каталог (40 минут)</h2>
+  <p>Цель: окно с каталогом товаров, цена со скидкой, метка «много/мало», подсветка, заглушка вместо отсутствующей картинки, единый стиль. Мы разберём готовый учебный код по файлам. Откройте папку <code>example/app</code> и читайте файл рядом с пояснением.</p>
+
+  <h3>6.1. Как устроен проект</h3>
+  <div class="diagram"><pre>example/app/
+├── main.py           ← точка входа: создаёт окно, переключает страницы
+├── config.py         ← настройки: пароль БД, название компании, пути к картинкам
+├── style.py          ← цвета и шрифты из руководства по стилю
+├── rules.py          ← правила бизнеса: скидка, «много/мало», подсветка, поиск
+├── database.py       ← все обращения к базе данных (SQL живёт только здесь)
+├── widgets.py        ← общие детали интерфейса: шапка, прокрутка, загрузка картинок
+├── login_page.py     ← страница входа
+├── catalog_page.py   ← страница каталога
+├── product_page.py   ← карточка товара и выбор размера
+├── cart_page.py      ← корзина и подтверждение заказа
+├── orders_page.py    ← список заказов и состав заказа (менеджер/админ)
+└── resources/        ← picture.png (заглушка), images/ (картинки товаров), icon.ico</pre></div>
+  <p>Принцип «каждому делу — свой файл» экономит время: ошибка в скидке — смотрим в <code>rules.py</code>, не заработал запрос — в <code>database.py</code>.</p>
+
+  <h3>6.2. Шаг первый: стиль и настройки</h3>
+  <p>Откройте Приложение 3 вашего варианта и перенесите оттуда цвета и шрифты в <code>style.py</code>, название компании и пути — в <code>config.py</code>. Название компании должно быть в названии приложения (заголовок окна) — в нашем коде это делает <code>main.py</code>: <code>self.title(config.COMPANY_NAME + " — " + page.title)</code>. Иконку ставит строка <code>self.iconbitmap(...)</code>, логотип — картинка на странице входа и в шапке.</p>
+  <details class="file"><summary>config.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+COMPANY_NAME = "Ботинок"
+
+DB_SETTINGS = {
+    "host": "localhost",
+    "port": 5432,
+    "dbname": "shoe_store",
+    "user": "postgres",
+    "password": "postgres",
+}
+
+IMAGES_DIR = os.path.join(BASE_DIR, "resources", "images")
+PLACEHOLDER_PATH = os.path.join(BASE_DIR, "resources", "picture.png")
+ICON_PATH = os.path.join(BASE_DIR, "resources", "icon.ico")
+
+ROLE_CLIENT = "Клиент"
+ROLE_MANAGER = "Менеджер"
+ROLE_ADMIN = "Администратор"</pre></div></details>
+  <details class="file"><summary>style.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre># Значения возьмите из руководства по стилю (Приложение 3) своего варианта.
+BACKGROUND = "#FFFFFF"
+ACCENT = "#7FFF00"
+SECONDARY = "#E8F5D8"
+LOW_STOCK_BACKGROUND = "#FFB3B3"
+
+FONT_FAMILY = "Arial"
+FONT_NORMAL = (FONT_FAMILY, 11)
+FONT_BOLD = (FONT_FAMILY, 11, "bold")
+FONT_TITLE = (FONT_FAMILY, 16, "bold")
+FONT_OLD_PRICE = (FONT_FAMILY, 10, "overstrike")</pre></div></details>
+
+  <h3>6.3. Шаг второй: правила в rules.py</h3>
+  <p>Правила — самое проверяемое место, поэтому они вынесены в маленькие функции без окон и без базы. Любую из них можно проверить в отдельности, выведя результат через <code>print</code>.</p>
+  <details class="file" open><summary>rules.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>from decimal import Decimal
+
+DISCOUNT_RATE = Decimal("0.25")
+MANY_PAIRS_LIMIT = 5
+LOW_STOCK_LIMIT = 3
+
+ALL_CATEGORIES = "Все категории"
+SORT_ASCENDING = "Цена: по возрастанию"
+SORT_DESCENDING = "Цена: по убыванию"
+
+
+def calc_final_price(price, has_discount):
+    if has_discount:
+        return (price * (1 - DISCOUNT_RATE)).quantize(Decimal("0.01"))
+    return price
+
+
+def stock_label(total_quantity):
+    if total_quantity &gt; MANY_PAIRS_LIMIT:
+        return "много"
+    return "мало"
+
+
+def is_low_stock(total_quantity):
+    return total_quantity &lt;= LOW_STOCK_LIMIT
+
+
+def filter_and_sort(products, category_name, search_text, sort_mode):
+    query = search_text.strip().lower()
+    visible = []
+    for product in products:
+        if category_name != ALL_CATEGORIES and product["category_name"] != category_name:
+            continue
+        in_name = query in product["product_name"].lower()
+        in_description = query in (product["description"] or "").lower()
+        if query and not (in_name or in_description):
+            continue
+        visible.append(product)
+    visible.sort(key=lambda item: item["final_price"], reverse=(sort_mode == SORT_DESCENDING))
+    return visible
+
+
+def calc_order_total(order_items):
+    return sum((item["unit_price"] * item["quantity"] for item in order_items), Decimal("0"))</pre></div></details>
+  <ul>
+    <li><code>calc_final_price</code> — если скидка положена, умножает цену на 0,75 и округляет до копеек (<code>quantize</code>); иначе возвращает цену как есть.</li>
+    <li><code>stock_label</code> — «много», если пар <b>больше</b> пяти; иначе «мало». Число пар — суммарно по всем размерам (его считает SQL).</li>
+    <li><code>is_low_stock</code> — <code>True</code>, если пар <b>не больше</b> трёх: такие карточки красим светло-красным.</li>
+    <li><code>filter_and_sort</code> — об этом урок 7.</li>
+  </ul>
+  <p>Проверьте границы: 3 → подсветка есть; 4 → нет. 5 → «мало»; 6 → «много». Ошибки на границах — самая частая причина потери баллов за этот пункт.</p>
+
+  <h3>6.4. Шаг третий: данные из базы — database.py</h3>
+  <p>Главный запрос каталога (<code>CATALOG_SQL</code>) вы уже видели в уроке 4: он сразу возвращает категорию, производителя, сумму остатков и признак скидки. Программа только красиво выводит результат.</p>
+  <details class="file"><summary>database.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import psycopg2
+from psycopg2.extras import RealDictCursor
+
+import config
+import rules
+
+HAS_DISCOUNT_SQL = """
+    NOT EXISTS (
+        SELECT 1
+        FROM order_item oi
+        JOIN customer_order o ON o.order_id = oi.order_id
+        WHERE oi.product_id = p.product_id
+          AND o.order_date &gt;= date_trunc('month', CURRENT_DATE) - INTERVAL '1 month'
+          AND o.order_date &lt;  date_trunc('month', CURRENT_DATE)
+    )
+"""
+
+CATALOG_SQL = """
+    SELECT p.product_id, p.product_name, p.description, p.composition, p.price, p.image_file,
+           c.category_name, m.manufacturer_name,
+           COALESCE(SUM(ps.quantity), 0) AS total_quantity,
+           {has_discount} AS has_discount
+    FROM product p
+    JOIN category c ON c.category_id = p.category_id
+    JOIN manufacturer m ON m.manufacturer_id = p.manufacturer_id
+    LEFT JOIN product_size ps ON ps.product_id = p.product_id
+    {where}
+    GROUP BY p.product_id, c.category_name, m.manufacturer_name
+    ORDER BY p.product_name
+"""
+
+FULL_NAME_SQL = "u.last_name || ' ' || u.first_name || COALESCE(' ' || u.patronymic, '')"
+
+
+def open_connection():
+    return psycopg2.connect(**config.DB_SETTINGS)
+
+
+def fetch_all(query, params=()):
+    connection = open_connection()
+    try:
+        with connection.cursor(cursor_factory=RealDictCursor) as cursor:
+            cursor.execute(query, params)
+            return cursor.fetchall()
+    finally:
+        connection.close()
+
+
+def run_in_transaction(work):
+    connection = open_connection()
+    try:
+        with connection:
+            with connection.cursor(cursor_factory=RealDictCursor) as cursor:
+                return work(cursor)
+    finally:
+        connection.close()
+
+
+def add_final_price(row):
+    row["total_quantity"] = int(row["total_quantity"])
+    row["final_price"] = rules.calc_final_price(row["price"], row["has_discount"])
+    return row
+
+
+def load_catalog(product_id=None):
+    where = ""
+    params = ()
+    if product_id is not None:
+        where = "WHERE p.product_id = %s"
+        params = (product_id,)
+    query = CATALOG_SQL.format(has_discount=HAS_DISCOUNT_SQL, where=where)
+    return [add_final_price(row) for row in fetch_all(query, params)]
+
+
+def load_categories():
+    rows = fetch_all("SELECT category_name FROM category ORDER BY category_name")
+    return [row["category_name"] for row in rows]
+
+
+def load_sizes(product_id):
+    return fetch_all(
+        "SELECT size_value, quantity FROM product_size WHERE product_id = %s ORDER BY size_value",
+        (product_id,),
+    )
+
+
+def find_user_by_login(login):
+    rows = fetch_all(
+        "SELECT u.user_id, u.login, " + FULL_NAME_SQL + " AS full_name, r.role_name "
+        "FROM app_user u JOIN role r ON r.role_id = u.role_id WHERE u.login = %s",
+        (login,),
+    )
+    return rows[0] if rows else None
+
+
+def load_customers():
+    return fetch_all(
+        "SELECT u.user_id, " + FULL_NAME_SQL + " AS full_name "
+        "FROM app_user u JOIN role r ON r.role_id = u.role_id "
+        "WHERE r.role_name = %s ORDER BY full_name",
+        (config.ROLE_CLIENT,),
+    )
+
+
+def create_order(customer_id, cart_items):
+    def work(cursor):
+        cursor.execute(
+            "INSERT INTO customer_order (order_date, customer_id) "
+            "VALUES (CURRENT_DATE, %s) RETURNING order_id",
+            (customer_id,),
+        )
+        order_id = cursor.fetchone()["order_id"]
+        for item in cart_items:
+            cursor.execute(
+                "UPDATE product_size SET quantity = quantity - %s "
+                "WHERE product_id = %s AND size_value = %s AND quantity &gt;= %s",
+                (item["quantity"], item["product_id"], item["size_value"], item["quantity"]),
+            )
+            if cursor.rowcount == 0:
+                raise ValueError(
+                    "Недостаточно пар: " + item["product_name"] + ", размер " + str(item["size_value"])
+                )
+            cursor.execute(
+                "INSERT INTO order_item (order_id, product_id, size_value, quantity) "
+                "VALUES (%s, %s, %s, %s) "
+                "ON CONFLICT (order_id, product_id, size_value) "
+                "DO UPDATE SET quantity = order_item.quantity + EXCLUDED.quantity",
+                (order_id, item["product_id"], item["size_value"], item["quantity"]),
+            )
+        return order_id
+
+    return run_in_transaction(work)
+
+
+def load_orders():
+    return fetch_all(
+        "SELECT o.order_id, o.order_date, " + FULL_NAME_SQL + " AS customer_name "
+        "FROM customer_order o JOIN app_user u ON u.user_id = o.customer_id "
+        "ORDER BY o.order_date DESC, o.order_id DESC"
+    )
+
+
+def load_order_items(order_id):
+    query = (
+        "SELECT p.product_id, p.product_name, m.manufacturer_name, oi.size_value, oi.quantity, p.price, "
+        + HAS_DISCOUNT_SQL
+        + " AS has_discount "
+        "FROM order_item oi "
+        "JOIN product p ON p.product_id = oi.product_id "
+        "JOIN manufacturer m ON m.manufacturer_id = p.manufacturer_id "
+        "WHERE oi.order_id = %s ORDER BY p.product_name, oi.size_value"
+    )
+    items = fetch_all(query, (order_id,))
+    for item in items:
+        item["unit_price"] = rules.calc_final_price(item["price"], item["has_discount"])
+    return items
+
+
+def delete_order(order_id):
+    def work(cursor):
+        cursor.execute(
+            "UPDATE product_size ps SET quantity = ps.quantity + oi.quantity "
+            "FROM order_item oi WHERE oi.order_id = %s "
+            "AND ps.product_id = oi.product_id AND ps.size_value = oi.size_value",
+            (order_id,),
+        )
+        cursor.execute("DELETE FROM customer_order WHERE order_id = %s", (order_id,))
+
+    run_in_transaction(work)
+
+
+def delete_order_item(order_id, product_id, size_value):
+    def work(cursor):
+        cursor.execute(
+            "UPDATE product_size ps SET quantity = ps.quantity + oi.quantity "
+            "FROM order_item oi WHERE oi.order_id = %s AND oi.product_id = %s AND oi.size_value = %s "
+            "AND ps.product_id = oi.product_id AND ps.size_value = oi.size_value",
+            (order_id, product_id, size_value),
+        )
+        cursor.execute(
+            "DELETE FROM order_item WHERE order_id = %s AND product_id = %s AND size_value = %s",
+            (order_id, product_id, size_value),
+        )
+
+    run_in_transaction(work)
+
+
+def change_order_date(order_id, new_date):
+    run_in_transaction(
+        lambda cursor: cursor.execute(
+            "UPDATE customer_order SET order_date = %s WHERE order_id = %s", (new_date, order_id)
+        )
+    )</pre></div></details>
+  <ul>
+    <li><code>open_connection</code> — подключение по настройкам из <code>config.py</code>.</li>
+    <li><code>fetch_all</code> — выполняет запрос и возвращает список словарей (как мы говорили в уроке 3). Подключение закрывается в блоке <code>finally</code> — даже если случилась ошибка.</li>
+    <li><code>run_in_transaction</code> — для записи: «всё или ничего». <code>with connection:</code> сам сохраняет изменения при успехе и откатывает при исключении.</li>
+    <li><code>load_catalog</code> — запрашивает каталог и дописывает каждой строке <code>final_price</code>. С параметром <code>product_id</code> вернёт один товар.</li>
+  </ul>
+
+  <h3>6.4а. Как выглядят карточки</h3>
+  <p>Макет в задании определяет расположение; наш код делает типовую карточку: слева картинка, по центру текст, справа «Количество: много/мало». Старая цена зачёркнута (<code>overstrike</code>), если есть скидка. Главные строки в <code>catalog_page.py</code>:</p>
+  <div class="code-block"><pre>color = style.LOW_STOCK_BACKGROUND if rules.is_low_stock(product["total_quantity"]) else style.BACKGROUND
+picture = load_image(product["image_file"], 100)     # заглушка подставится сама, если файла нет</pre></div>
+  <p>Заглушка работает в <code>widgets.load_image</code>: если имя файла пустое или файла нет на диске — берётся <code>picture.png</code>. Поэтому в БД у товара без картинки должно быть <code>NULL</code>, а не пустая строка с пробелом (вот зачем в импорте <code>NULLIF</code>).</p>
+
+  <h3>6.5. Отладка модуля — что проверить руками</h3>
+  <ul class="check-plain">
+    <li>Запускается без ошибок на чистой базе.</li>
+    <li>Товар без картинки — виден серый квадрат-заглушка.</li>
+    <li>Товар без остатков — карточка красная, «мало», программа не упала.</li>
+    <li>Товар без заказов в прошлом месяце — цена уменьшена, старая зачёркнута.</li>
+    <li>Выключите службу PostgreSQL и запустите: должно появиться окно с понятным текстом, а не вылет.</li>
+  </ul>
+
+  <h3>6.6. Оформление кода (за это тоже баллы)</h3>
+  <ul>
+    <li>Имена — <code>snake_case</code>, осмысленные.</li>
+    <li><b>Не более одной команды в строке</b>: нельзя <code>a = 1; b = 2</code>.</li>
+    <li>Комментарии — только там, где иначе непонятно (в нашем коде они почти не нужны: имена всё объясняют).</li>
+    <li>Не оставляйте закомментированный старый код и неиспользуемые файлы.</li>
+  </ul>
+  <label class="done"><input type="checkbox" data-lesson="l6"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l7" data-title="7. Задание 3">
+  <h2>Урок 7. Задание 3 пошагово: вход, поиск и заказ (60 минут)</h2>
+
+  <h3>7.1. Вход по логину</h3>
+  <p>Пароль не нужен: программа спрашивает логин и ищет его в таблице пользователей. После входа в правом верхнем углу — ФИО.</p>
+  <details class="file"><summary>login_page.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import tkinter as tk
+from tkinter import messagebox, ttk
+
+import config
+import database
+import style
+from widgets import BasePage, load_image
+
+
+class LoginPage(BasePage):
+    title = "Вход в систему"
+
+    def __init__(self, app):
+        super().__init__(app)
+        box = tk.Frame(self.body, background=style.BACKGROUND)
+        box.place(relx=0.5, rely=0.4, anchor="center")
+        self.logo = load_image(None, 120)
+        tk.Label(box, image=self.logo, background=style.BACKGROUND).pack(pady=8)
+        tk.Label(box, text=config.COMPANY_NAME, font=style.FONT_TITLE, background=style.BACKGROUND).pack()
+        tk.Label(box, text="Логин", font=style.FONT_NORMAL, background=style.BACKGROUND).pack(pady=(16, 2))
+        self.login_var = tk.StringVar()
+        entry = ttk.Entry(box, textvariable=self.login_var, width=30)
+        entry.pack()
+        entry.focus_set()
+        entry.bind("&lt;Return&gt;", lambda event: self.try_login())
+        ttk.Button(box, text="Войти", command=self.try_login).pack(pady=12)
+
+    def try_login(self):
+        login = self.login_var.get().strip()
+        if not login:
+            messagebox.showwarning("Вход", "Введите логин и нажмите «Войти».")
+            return
+        try:
+            user = database.find_user_by_login(login)
+        except Exception:
+            messagebox.showerror(
+                "Ошибка подключения",
+                "Не удалось связаться с базой данных. Проверьте, что СУБД запущена, и повторите вход.",
+            )
+            return
+        if user is None:
+            messagebox.showerror(
+                "Вход", "Пользователь с логином «" + login + "» не найден. Проверьте логин по списку пользователей."
+            )
+            return
+        self.app.sign_in(user)</pre></div></details>
+  <ul>
+    <li>Пустой логин → окно-предупреждение <code>showwarning</code> с подсказкой.</li>
+    <li>База недоступна → окно-ошибка <code>showerror</code> (внутри <code>try/except</code>), программа не падает.</li>
+    <li>Логина нет в базе → ошибка с понятным текстом и тем, что делать.</li>
+    <li>Успех → <code>app.sign_in(user)</code>: запоминаем пользователя и открываем каталог.</li>
+  </ul>
+  <p>Окна сообщений бывают трёх видов: <code>showinfo</code> (информация), <code>showwarning</code> (предупреждение), <code>showerror</code> (ошибка). У каждого есть заголовок и значок. Текст сообщения должен отвечать на два вопроса: «что не так?» и «что делать?». Плохо: «Ошибка!». Хорошо: «Введите количество пар целым числом, не меньше 1».</p>
+
+  <h3>7.2. Навигация и кнопка «Назад»</h3>
+  <p>Окно одно, а «страницы» (каталог, карточка, корзина) сменяют друг друга. Страницы, которые мы покинули, складываются в список <code>history</code>, как стопка тарелок. «Назад» берёт верхнюю тарелку. Весь механизм — несколько строк в <code>main.py</code>:</p>
+  <details class="file"><summary>main.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import tkinter as tk
+
+import config
+from login_page import LoginPage
+
+
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.geometry("1000x700")
+        self.minsize(800, 500)
+        try:
+            self.iconbitmap(config.ICON_PATH)
+        except tk.TclError:
+            pass
+        self.user = None
+        self.cart = []
+        self.history = []
+        self.current = None
+        self.open(LoginPage)
+
+    def open(self, page_class, **kwargs):
+        if self.current is not None:
+            self.current.pack_forget()
+            self.history.append(self.current)
+        self.show(page_class(self, **kwargs))
+
+    def show(self, page):
+        self.current = page
+        page.pack(fill="both", expand=True)
+        self.title(config.COMPANY_NAME + " — " + page.title)
+
+    def back(self):
+        if not self.history:
+            return
+        self.current.destroy()
+        previous = self.history.pop()
+        self.show(previous)
+        previous.refresh()
+
+    def sign_in(self, user):
+        self.user = user
+        self.cart = []
+        self.reset_pages()
+        from catalog_page import CatalogPage
+
+        self.open(CatalogPage)
+
+    def sign_out(self):
+        self.user = None
+        self.cart = []
+        self.reset_pages()
+        self.open(LoginPage)
+
+    def reset_pages(self):
+        for page in self.history + ([self.current] if self.current else []):
+            page.destroy()
+        self.history = []
+        self.current = None
+
+
+if __name__ == "__main__":
+    App().mainloop()</pre></div></details>
+  <ul>
+    <li><code>open(PageClass)</code> — спрятать текущую страницу, запомнить её в стопке, показать новую.</li>
+    <li><code>back()</code> — уничтожить текущую, достать из стопки предыдущую и вызвать её <code>refresh()</code> — так каталог обновляется после заказа.</li>
+    <li>Заголовок окна ставится автоматически из <code>page.title</code> — по одному на каждую страницу.</li>
+  </ul>
+
+  <h3>7.3. Поиск, фильтр, сортировка — в реальном времени</h3>
+  <p>Секрет совместной работы: <b>одна функция получает сразу все три параметра</b>. Любое изменение любого поля заново вызывает её и перерисовывает список. Поэтому сортировка не «слетает» при поиске, а фильтр дружит с поиском.</p>
+  <div class="code-block"><pre>for variable in (self.search_var, self.category_var, self.sort_var):
+    variable.trace_add("write", self.render)      # любое изменение → перерисовка</pre></div>
+  <p><code>trace_add("write", ...)</code> означает «вызывай функцию каждый раз, когда значение переменной меняется». Кнопки «Найти» нет — всё происходит в момент ввода каждой буквы.</p>
+  <p>Сама логика в <code>rules.filter_and_sort</code> (см. выше): пропускаем товар, если его категория не совпала с выбранной (кроме «Все категории»); пропускаем, если строка поиска не найдена ни в названии, ни в описании (<code>.lower()</code> — чтобы регистр не мешал); потом сортируем по цене со скидкой. Первый пункт выпадающего списка категорий — «Все категории», остальные берутся из БД.</p>
+  <details class="file"><summary>catalog_page.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import tkinter as tk
+from tkinter import messagebox, ttk
+
+import config
+import database
+import rules
+import style
+from product_page import ProductPage
+from widgets import BasePage, ScrollFrame, load_image
+
+
+class CatalogPage(BasePage):
+    title = "Каталог обуви"
+    back_text = "Выйти"
+
+    def __init__(self, app):
+        super().__init__(app)
+        self.products = []
+        self.build_toolbar()
+        self.list_area = ScrollFrame(self.body)
+        self.list_area.pack(fill="both", expand=True)
+        self.refresh()
+
+    def always_show_back(self):
+        return True
+
+    def go_back(self):
+        self.app.sign_out()
+
+    def build_toolbar(self):
+        bar = tk.Frame(self.body, background=style.SECONDARY)
+        bar.pack(fill="x")
+        self.search_var = tk.StringVar()
+        self.category_var = tk.StringVar(value=rules.ALL_CATEGORIES)
+        self.sort_var = tk.StringVar(value=rules.SORT_ASCENDING)
+        ttk.Entry(bar, textvariable=self.search_var, width=28).pack(side="left", padx=8, pady=8)
+        self.category_box = ttk.Combobox(bar, textvariable=self.category_var, state="readonly", width=20)
+        self.category_box.pack(side="left", padx=4)
+        sort_box = ttk.Combobox(
+            bar,
+            textvariable=self.sort_var,
+            state="readonly",
+            width=22,
+            values=[rules.SORT_ASCENDING, rules.SORT_DESCENDING],
+        )
+        sort_box.pack(side="left", padx=4)
+        for variable in (self.search_var, self.category_var, self.sort_var):
+            variable.trace_add("write", self.render)
+        self.cart_button = ttk.Button(bar, text="Корзина (0)", command=self.open_cart)
+        self.cart_button.pack(side="right", padx=8)
+        if self.app.user["role_name"] in (config.ROLE_MANAGER, config.ROLE_ADMIN):
+            ttk.Button(bar, text="Заказы", command=self.open_orders).pack(side="right", padx=4)
+
+    def refresh(self):
+        try:
+            self.products = database.load_catalog()
+            categories = database.load_categories()
+        except Exception:
+            messagebox.showerror(
+                "Ошибка загрузки",
+                "Не удалось загрузить каталог из базы данных. Проверьте подключение и повторите попытку.",
+            )
+            return
+        self.category_box.configure(values=[rules.ALL_CATEGORIES] + categories)
+        self.cart_button.configure(text="Корзина (" + str(len(self.app.cart)) + ")")
+        self.render()
+
+    def render(self, *_):
+        visible = rules.filter_and_sort(
+            self.products, self.category_var.get(), self.search_var.get(), self.sort_var.get()
+        )
+        self.list_area.clear()
+        if not visible:
+            tk.Label(
+                self.list_area.inner,
+                text="Ничего не найдено. Измените строку поиска или выберите «Все категории».",
+                font=style.FONT_NORMAL,
+                background=style.BACKGROUND,
+            ).pack(pady=24)
+        for product in visible:
+            self.build_card(product)
+
+    def build_card(self, product):
+        color = style.LOW_STOCK_BACKGROUND if rules.is_low_stock(product["total_quantity"]) else style.BACKGROUND
+        card = tk.Frame(self.list_area.inner, background=color, highlightbackground="#999999", highlightthickness=1)
+        card.pack(fill="x", padx=12, pady=5)
+        picture = load_image(product["image_file"], 100)
+        image_label = tk.Label(card, image=picture, background=color)
+        image_label.image = picture
+        image_label.pack(side="left", padx=8, pady=8)
+        text = tk.Frame(card, background=color)
+        text.pack(side="left", fill="both", expand=True)
+        tk.Label(
+            text,
+            text=product["category_name"] + " | " + product["product_name"],
+            font=style.FONT_BOLD,
+            background=color,
+        ).pack(anchor="w")
+        tk.Label(text, text="Производитель: " + product["manufacturer_name"], background=color, font=style.FONT_NORMAL).pack(anchor="w")
+        tk.Label(text, text="Состав: " + (product["composition"] or "—"), background=color, font=style.FONT_NORMAL).pack(anchor="w")
+        price_line = tk.Frame(text, background=color)
+        price_line.pack(anchor="w")
+        if product["has_discount"]:
+            tk.Label(price_line, text=str(product["price"]) + " ₽", font=style.FONT_OLD_PRICE, background=color, foreground="#cc0000").pack(side="left")
+        tk.Label(price_line, text=str(product["final_price"]) + " ₽", font=style.FONT_BOLD, background=color).pack(side="left", padx=6)
+        tk.Label(
+            card,
+            text="Количество: " + rules.stock_label(product["total_quantity"]),
+            font=style.FONT_BOLD,
+            background=color,
+        ).pack(side="right", padx=16)
+        self.bind_click(card, product["product_id"])
+
+    def bind_click(self, widget, product_id):
+        widget.bind("&lt;Button-1&gt;", lambda event: self.open_product(product_id))
+        for child in widget.winfo_children():
+            self.bind_click(child, product_id)
+
+    def open_product(self, product_id):
+        self.app.open(ProductPage, product_id=product_id)
+
+    def open_cart(self):
+        from cart_page import CartPage
+
+        self.app.open(CartPage)
+
+    def open_orders(self):
+        from orders_page import OrdersPage
+
+        self.app.open(OrdersPage)</pre></div></details>
+
+  <h3>7.4. Карточка товара</h3>
+  <p>По одинарному клику на карточку (<code>bind_click</code> вешает обработчик на карточку и на все её части) открывается форма с полями: изображение, производитель, название, категория, цена со скидкой, состав, описание, размерный ряд, доступные размеры. Данные загружаются из БД заново в момент открытия (<code>load_catalog(product_id)</code>, <code>load_sizes</code>) — они всегда актуальны.</p>
+  <details class="file"><summary>product_page.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import tkinter as tk
+from tkinter import messagebox, ttk
+
+import database
+import rules
+import style
+from widgets import BasePage, load_image
+
+
+class ProductPage(BasePage):
+    title = "Карточка товара"
+
+    def __init__(self, app, product_id):
+        super().__init__(app)
+        self.product_id = product_id
+        try:
+            self.product = database.load_catalog(product_id)[0]
+            self.sizes = database.load_sizes(product_id)
+        except Exception:
+            messagebox.showerror("Ошибка загрузки", "Не удалось загрузить данные товара. Вернитесь назад и повторите попытку.")
+            self.product = None
+            return
+        self.build_details()
+        self.build_order_form()
+
+    def build_details(self):
+        product = self.product
+        left = tk.Frame(self.body, background=style.BACKGROUND)
+        left.pack(side="left", anchor="n", padx=20, pady=20)
+        picture = load_image(product["image_file"], 260)
+        image_label = tk.Label(left, image=picture, background=style.BACKGROUND)
+        image_label.image = picture
+        image_label.pack()
+        info = tk.Frame(self.body, background=style.BACKGROUND)
+        info.pack(side="left", anchor="n", pady=20, fill="x", expand=True)
+        rows = [
+            ("Наименование", product["product_name"]),
+            ("Категория", product["category_name"]),
+            ("Производитель", product["manufacturer_name"]),
+            ("Цена со скидкой", str(product["final_price"]) + " ₽"),
+            ("Состав", product["composition"] or "—"),
+            ("Описание", product["description"] or "—"),
+            ("Размерный ряд", ", ".join(str(size["size_value"]) for size in self.sizes)),
+            ("Доступные размеры", ", ".join(str(s["size_value"]) for s in self.sizes if s["quantity"] &gt; 0) or "нет в наличии"),
+        ]
+        for caption, value in rows:
+            line = tk.Frame(info, background=style.BACKGROUND)
+            line.pack(anchor="w", pady=2)
+            tk.Label(line, text=caption + ":", font=style.FONT_BOLD, background=style.BACKGROUND).pack(side="left")
+            tk.Label(line, text=value, font=style.FONT_NORMAL, background=style.BACKGROUND, wraplength=420, justify="left").pack(side="left", padx=6)
+        self.info = info
+
+    def build_order_form(self):
+        available = [size for size in self.sizes if size["quantity"] &gt; 0]
+        form = tk.Frame(self.info, background=style.BACKGROUND)
+        form.pack(anchor="w", pady=20)
+        self.size_var = tk.StringVar()
+        self.quantity_var = tk.StringVar(value="1")
+        tk.Label(form, text="Размер", background=style.BACKGROUND, font=style.FONT_NORMAL).grid(row=0, column=0, padx=4)
+        size_box = ttk.Combobox(
+            form, textvariable=self.size_var, state="readonly", width=8,
+            values=[str(size["size_value"]) for size in available],
+        )
+        size_box.grid(row=0, column=1, padx=4)
+        tk.Label(form, text="Количество пар", background=style.BACKGROUND, font=style.FONT_NORMAL).grid(row=0, column=2, padx=4)
+        ttk.Entry(form, textvariable=self.quantity_var, width=6).grid(row=0, column=3, padx=4)
+        add_button = ttk.Button(form, text="Добавить в заказ", command=self.add_to_cart)
+        add_button.grid(row=0, column=4, padx=12)
+        if not available:
+            add_button.state(["disabled"])
+
+    def find_stock(self, size_text):
+        for size in self.sizes:
+            if str(size["size_value"]) == size_text:
+                return size["quantity"]
+        return 0
+
+    def add_to_cart(self):
+        size_text = self.size_var.get()
+        if not size_text:
+            messagebox.showwarning("Размер не выбран", "Выберите размер из списка доступных размеров.")
+            return
+        quantity_text = self.quantity_var.get().strip()
+        if not quantity_text.isdigit() or int(quantity_text) &lt; 1:
+            messagebox.showerror("Неверное количество", "Введите количество пар целым числом, не меньше 1.")
+            return
+        quantity = int(quantity_text)
+        in_cart = sum(
+            item["quantity"]
+            for item in self.app.cart
+            if item["product_id"] == self.product_id and str(item["size_value"]) == size_text
+        )
+        stock = self.find_stock(size_text)
+        if quantity + in_cart &gt; stock:
+            messagebox.showerror(
+                "Недостаточно товара",
+                "В наличии " + str(stock) + " пар размера " + size_text + " (в корзине уже " + str(in_cart) + "). Уменьшите количество.",
+            )
+            return
+        self.app.cart.append(
+            {
+                "product_id": self.product_id,
+                "product_name": self.product["product_name"],
+                "size_value": next(s["size_value"] for s in self.sizes if str(s["size_value"]) == size_text),
+                "quantity": quantity,
+                "unit_price": self.product["final_price"],
+            }
+        )
+        messagebox.showinfo("Добавлено", "Позиция добавлена в заказ. Откройте корзину в каталоге, чтобы подтвердить заказ.")
+        self.app.back()</pre></div></details>
+  <p>Защита от неправильных действий в <code>add_to_cart</code> — проверьте по порядку:</p>
+  <ol>
+    <li>Размер не выбран → предупреждение.</li>
+    <li>Количество не число или меньше 1 → ошибка. <code>isdigit()</code> проверяет, что в тексте только цифры.</li>
+    <li>Количество больше остатка (с учётом того, что уже лежит в корзине) → ошибка с цифрами.</li>
+    <li>В выпадающем списке <b>только доступные</b> размеры (с остатком больше нуля) — недоступный просто нельзя выбрать.</li>
+  </ol>
+
+  <h3>7.5. Корзина и подтверждение заказа</h3>
+  <p>Позиции копятся в списке <code>app.cart</code>. Пользователь может убрать позицию, отказаться от заказа (корзина очищается — в базу ничего не пишется) или подтвердить.</p>
+  <details class="file"><summary>cart_page.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import tkinter as tk
+from tkinter import messagebox, ttk
+
+import config
+import database
+import rules
+import style
+from widgets import BasePage
+
+
+class CartPage(BasePage):
+    title = "Оформление заказа"
+
+    def __init__(self, app):
+        super().__init__(app)
+        self.customers = []
+        self.build_table()
+        self.build_footer()
+        self.fill_table()
+
+    def build_table(self):
+        columns = ("name", "size", "quantity", "price", "sum")
+        self.table = ttk.Treeview(self.body, columns=columns, show="headings", selectmode="browse")
+        for key, caption, width in (
+            ("name", "Товар", 320), ("size", "Размер", 80), ("quantity", "Кол-во", 80),
+            ("price", "Цена за пару", 120), ("sum", "Сумма", 120),
+        ):
+            self.table.heading(key, text=caption)
+            self.table.column(key, width=width, anchor="w")
+        self.table.pack(fill="both", expand=True, padx=12, pady=12)
+
+    def build_footer(self):
+        footer = tk.Frame(self.body, background=style.BACKGROUND)
+        footer.pack(fill="x", padx=12, pady=8)
+        self.total_label = tk.Label(footer, font=style.FONT_BOLD, background=style.BACKGROUND)
+        self.total_label.pack(side="left")
+        self.customer_var = tk.StringVar()
+        if self.app.user["role_name"] != config.ROLE_CLIENT:
+            self.customers = database.load_customers()
+            names = [customer["full_name"] for customer in self.customers]
+            tk.Label(footer, text="Клиент:", background=style.BACKGROUND, font=style.FONT_NORMAL).pack(side="left", padx=(24, 4))
+            ttk.Combobox(footer, textvariable=self.customer_var, values=names, state="readonly", width=30).pack(side="left")
+        ttk.Button(footer, text="Отказаться от заказа", command=self.cancel_order).pack(side="right", padx=4)
+        ttk.Button(footer, text="Подтвердить заказ", command=self.confirm_order).pack(side="right", padx=4)
+        ttk.Button(footer, text="Убрать позицию", command=self.remove_selected).pack(side="right", padx=4)
+
+    def fill_table(self):
+        self.table.delete(*self.table.get_children())
+        for index, item in enumerate(self.app.cart):
+            line_sum = item["unit_price"] * item["quantity"]
+            self.table.insert(
+                "", "end", iid=str(index),
+                values=(item["product_name"], item["size_value"], item["quantity"], item["unit_price"], line_sum),
+            )
+        total = rules.calc_order_total(self.app.cart)
+        self.total_label.configure(text="Итого: " + str(total) + " ₽")
+
+    def remove_selected(self):
+        selected = self.table.selection()
+        if not selected:
+            messagebox.showwarning("Позиция не выбрана", "Выберите в таблице позицию, которую нужно убрать.")
+            return
+        del self.app.cart[int(selected[0])]
+        self.fill_table()
+
+    def cancel_order(self):
+        if self.app.cart and not messagebox.askyesno("Отказ от заказа", "Все позиции будут убраны из заказа. Продолжить?", icon="warning"):
+            return
+        self.app.cart.clear()
+        self.app.back()
+
+    def pick_customer_id(self):
+        if self.app.user["role_name"] == config.ROLE_CLIENT:
+            return self.app.user["user_id"]
+        for customer in self.customers:
+            if customer["full_name"] == self.customer_var.get():
+                return customer["user_id"]
+        return None
+
+    def confirm_order(self):
+        if not self.app.cart:
+            messagebox.showwarning("Пустой заказ", "В заказе нет позиций. Вернитесь в каталог и добавьте товар.")
+            return
+        customer_id = self.pick_customer_id()
+        if customer_id is None:
+            messagebox.showwarning("Клиент не выбран", "Выберите клиента, на которого оформляется заказ.")
+            return
+        try:
+            order_id = database.create_order(customer_id, self.app.cart)
+        except ValueError as error:
+            messagebox.showerror("Заказ не оформлен", str(error) + ". Уменьшите количество или уберите позицию.")
+            return
+        except Exception:
+            messagebox.showerror("Ошибка", "Не удалось сохранить заказ. Проверьте подключение к базе данных и повторите попытку.")
+            return
+        self.app.cart.clear()
+        messagebox.showinfo("Заказ оформлен", "Заказ № " + str(order_id) + " оформлен.")
+        self.app.back()</pre></div></details>
+  <p>При подтверждении вызывается <code>database.create_order</code> — в одной транзакции:</p>
+  <ol>
+    <li>создать заказ с сегодняшней датой (<code>CURRENT_DATE</code>);</li>
+    <li>для каждой позиции списать остаток: <code>UPDATE ... SET quantity = quantity - N ... AND quantity &gt;= N</code>. Если строка не обновилась (<code>rowcount == 0</code>), значит остатка не хватило — выбрасываем ошибку, и вся транзакция откатывается;</li>
+    <li>записать позицию в <code>order_item</code>.</li>
+  </ol>
+  <p>После успеха корзина очищается, <code>app.back()</code> возвращает в каталог, а <code>refresh()</code> перечитывает данные — остатки пересчитаны, подсветка и «много/мало» обновились.</p>
+  <label class="done"><input type="checkbox" data-lesson="l7"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l8" data-title="8. Задание 4">
+  <h2>Урок 8. Задание 4 пошагово: работа с заказами для менеджера и администратора (60 минут)</h2>
+  <p>Теперь у программы две новые роли с дополнительными кнопками. Роль приходит из базы при входе (<code>user["role_name"]</code>), и страницы показывают лишние кнопки только тем, кому они положены.</p>
+  <table class="plain wide">
+    <thead><tr><th>Возможность</th><th>Клиент</th><th>Менеджер</th><th>Администратор</th></tr></thead>
+    <tbody>
+      <tr><td>Каталог, поиск, оформление заказа</td><td>да</td><td>да</td><td>да</td></tr>
+      <tr><td>Список заказов (дата, ФИО клиента)</td><td>нет</td><td>да</td><td>да</td></tr>
+      <tr><td>Добавить заказ, удалить заказ</td><td>нет</td><td>да</td><td>да</td></tr>
+      <tr><td>Посмотреть состав заказа и итоговую сумму</td><td>нет</td><td>да</td><td>да</td></tr>
+      <tr><td>Изменить дату заказа, удалить товарную позицию</td><td>нет</td><td>нет</td><td>да</td></tr>
+    </tbody>
+  </table>
+
+  <details class="file"><summary>orders_page.py</summary><div class="code-block"><button class="copy" type="button">Копировать</button><pre>import tkinter as tk
+from datetime import datetime
+from tkinter import messagebox, ttk
+
+import config
+import database
+import rules
+import style
+from widgets import BasePage
+
+DATE_FORMAT = "%d.%m.%Y"
+
+
+class OrdersPage(BasePage):
+    title = "Заказы"
+
+    def __init__(self, app):
+        super().__init__(app)
+        self.build_buttons()
+        self.table = ttk.Treeview(self.body, columns=("date", "customer"), show="headings", selectmode="browse")
+        self.table.heading("date", text="Дата заказа")
+        self.table.heading("customer", text="ФИО клиента")
+        self.table.column("date", width=140)
+        self.table.column("customer", width=420)
+        self.table.pack(fill="both", expand=True, padx=12, pady=12)
+        self.table.bind("&lt;Double-1&gt;", lambda event: self.open_details())
+        self.refresh()
+
+    def build_buttons(self):
+        bar = tk.Frame(self.body, background=style.SECONDARY)
+        bar.pack(fill="x")
+        ttk.Button(bar, text="Добавить заказ", command=self.add_order).pack(side="left", padx=8, pady=8)
+        ttk.Button(bar, text="Состав заказа", command=self.open_details).pack(side="left", padx=4)
+        ttk.Button(bar, text="Удалить заказ", command=self.delete_selected).pack(side="left", padx=4)
+
+    def refresh(self):
+        self.table.delete(*self.table.get_children())
+        try:
+            orders = database.load_orders()
+        except Exception:
+            messagebox.showerror("Ошибка загрузки", "Не удалось загрузить список заказов. Проверьте подключение к базе данных.")
+            return
+        for order in orders:
+            self.table.insert(
+                "", "end", iid=str(order["order_id"]),
+                values=(order["order_date"].strftime(DATE_FORMAT), order["customer_name"]),
+            )
+
+    def selected_order_id(self):
+        selected = self.table.selection()
+        if not selected:
+            messagebox.showwarning("Заказ не выбран", "Выберите заказ в таблице.")
+            return None
+        return int(selected[0])
+
+    def add_order(self):
+        from catalog_page import CatalogPage
+
+        messagebox.showinfo(
+            "Новый заказ",
+            "Найдите товары в каталоге, добавьте их в заказ, затем откройте «Корзину» и выберите клиента.",
+        )
+        self.app.open(CatalogPage)
+
+    def open_details(self):
+        order_id = self.selected_order_id()
+        if order_id is not None:
+            self.app.open(OrderDetailsPage, order_id=order_id)
+
+    def delete_selected(self):
+        order_id = self.selected_order_id()
+        if order_id is None:
+            return
+        if not messagebox.askyesno(
+            "Удаление заказа",
+            "Заказ № " + str(order_id) + " будет удалён, а товары вернутся на склад. Это действие нельзя отменить. Продолжить?",
+            icon="warning",
+        ):
+            return
+        database.delete_order(order_id)
+        self.refresh()
+
+
+class OrderDetailsPage(BasePage):
+    title = "Состав заказа"
+
+    def __init__(self, app, order_id):
+        super().__init__(app)
+        self.order_id = order_id
+        self.is_admin = app.user["role_name"] == config.ROLE_ADMIN
+        columns = ("name", "maker", "size", "quantity", "price", "sum")
+        self.table = ttk.Treeview(self.body, columns=columns, show="headings", selectmode="browse")
+        for key, caption, width in (
+            ("name", "Товар", 240), ("maker", "Производитель", 160), ("size", "Размер", 70),
+            ("quantity", "Кол-во", 70), ("price", "Цена за пару", 110), ("sum", "Сумма", 110),
+        ):
+            self.table.heading(key, text=caption)
+            self.table.column(key, width=width)
+        self.table.pack(fill="both", expand=True, padx=12, pady=12)
+        footer = tk.Frame(self.body, background=style.BACKGROUND)
+        footer.pack(fill="x", padx=12, pady=8)
+        self.total_label = tk.Label(footer, font=style.FONT_BOLD, background=style.BACKGROUND)
+        self.total_label.pack(side="left")
+        if self.is_admin:
+            self.build_admin_controls(footer)
+        self.refresh()
+
+    def build_admin_controls(self, footer):
+        self.date_var = tk.StringVar()
+        ttk.Button(footer, text="Удалить позицию", command=self.delete_item).pack(side="right", padx=4)
+        ttk.Button(footer, text="Сохранить дату", command=self.save_date).pack(side="right", padx=4)
+        ttk.Entry(footer, textvariable=self.date_var, width=14).pack(side="right")
+        tk.Label(footer, text="Дата (ДД.ММ.ГГГГ):", background=style.BACKGROUND, font=style.FONT_NORMAL).pack(side="right", padx=4)
+
+    def refresh(self):
+        self.table.delete(*self.table.get_children())
+        items = database.load_order_items(self.order_id)
+        for item in items:
+            row_id = str(item["product_id"]) + "|" + str(item["size_value"])
+            self.table.insert(
+                "", "end", iid=row_id,
+                values=(
+                    item["product_name"], item["manufacturer_name"], item["size_value"], item["quantity"],
+                    item["unit_price"], item["unit_price"] * item["quantity"],
+                ),
+            )
+        self.total_label.configure(text="Итого по заказу: " + str(rules.calc_order_total(items)) + " ₽")
+        if self.is_admin:
+            order = next((o for o in database.load_orders() if o["order_id"] == self.order_id), None)
+            if order:
+                self.date_var.set(order["order_date"].strftime(DATE_FORMAT))
+
+    def save_date(self):
+        try:
+            new_date = datetime.strptime(self.date_var.get().strip(), DATE_FORMAT).date()
+        except ValueError:
+            messagebox.showerror("Неверная дата", "Введите дату в формате ДД.ММ.ГГГГ, например 15.03.2026.")
+            return
+        database.change_order_date(self.order_id, new_date)
+        messagebox.showinfo("Сохранено", "Дата заказа изменена.")
+
+    def delete_item(self):
+        selected = self.table.selection()
+        if not selected:
+            messagebox.showwarning("Позиция не выбрана", "Выберите позицию в таблице.")
+            return
+        if not messagebox.askyesno("Удаление позиции", "Позиция будет удалена из заказа, товар вернётся на склад. Продолжить?", icon="warning"):
+            return
+        product_id, size_value = selected[0].split("|")
+        database.delete_order_item(self.order_id, int(product_id), size_value)
+        self.refresh()</pre></div></details>
+
+  <h3>8.1. Список заказов</h3>
+  <p>Таблица <code>ttk.Treeview</code> с двумя столбцами: дата и ФИО. Идентификатор заказа хранится в <code>iid</code> строки — его не видно, но по нему мы знаем, какой заказ выбран. Двойной клик открывает состав.</p>
+
+  <h3>8.2. Добавление заказа</h3>
+  <p>Задание требует: товары выбираются из каталога с поиском по названию → форма товара → размер и количество. Мы используем уже готовый каталог: кнопка «Добавить заказ» открывает его, позиции собираются в корзину, а на странице корзины менеджер выбирает клиента (<code>load_customers</code>) и подтверждает. Ничего писать заново не пришлось — это и есть польза от того, что страницы устроены как конструктор.</p>
+
+  <h3>8.3. Состав заказа и сумма</h3>
+  <p>Для каждой позиции показываются: товар (наименование + производитель), размер, количество, цена за единицу, сумма по строке. Внизу итог: <code>rules.calc_order_total</code> складывает «цена × количество» по всем строкам. Обратите внимание на <code>sum(..., Decimal("0"))</code>: начинаем сложение с «денежного» нуля.</p>
+
+  <h3>8.4. Удаление и редактирование (только администратор)</h3>
+  <ul>
+    <li><b>Изменить дату:</b> текст разбирается через <code>datetime.strptime(текст, "%d.%m.%Y")</code>. Если введено «31.02.2026» — сработает <code>ValueError</code>, и пользователь увидит окно с примером правильной даты.</li>
+    <li><b>Удалить позицию или заказ:</b> перед удалением — вопрос <code>askyesno</code> (предупреждение о необратимом действии). В транзакции сначала <b>возвращаем</b> товар в остаток (<code>UPDATE ... SET quantity = quantity + ...</code>), потом удаляем строки.</li>
+    <li>После любого изменения вызывается <code>refresh()</code>, и таблица обновляется.</li>
+  </ul>
+  <div class="callout">Задание допускает разные трактовки слова «позиции». Если вам непонятно, что именно нужно (удалять заказ целиком или строки внутри заказа), задайте вопрос эксперту <b>по формулировке</b> — это разрешено, ответ дадут всем. В примере реализованы оба варианта.</div>
+  <label class="done"><input type="checkbox" data-lesson="l8"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l9" data-title="9. Свой вариант">
+  <h2>Урок 9. Как переделать пример под свой вариант</h2>
+  <p>На экзамене предметная область будет другой: не обувь, а, скажем, мебель, книги, бытовая техника. Принцип тот же — меняются названия. Алгоритм переделки:</p>
+  <ol class="steps">
+    <li>Найдите в Приложении 1 «главный объект» (товар/модель) и его «ключевой параметр» (в обуви — размер; в другой области может называться иначе). Остаток хранится на пару «объект + параметр».</li>
+    <li>Составьте таблицу соответствия: <code>product</code> → ваш объект, <code>size_value</code> → ваш параметр, <code>customer_order</code> → ваш заказ.</li>
+    <li>В <code>schema.sql</code> замените названия и поля на свои.</li>
+    <li>В <code>database.py</code> поправьте SQL: поля в <code>SELECT</code> и названия таблиц.</li>
+    <li>В <code>catalog_page.py</code> поменяйте поля, которые показываете в карточке, на те, что в макете вашего задания.</li>
+    <li>Условия скидки и подсветки (проценты, пороги) бывают другими — они лежат в самом верху <code>rules.py</code>: <code>DISCOUNT_RATE</code>, <code>MANY_PAIRS_LIMIT</code>, <code>LOW_STOCK_LIMIT</code>. Прочтите условие внимательно: «больше» или «не меньше», «предыдущий месяц» или «последние 30 дней».</li>
+    <li>Из <code>style.py</code> уберите мои цвета и впишите цвета и шрифты из вашего Приложения 3.</li>
+  </ol>
+  <div class="tip">Хорошая тренировка: возьмите другую предметную область (книжный магазин, автозапчасти), придумайте схему и переделайте проект за два часа. После этого экзамен перестанет быть страшным.</div>
+  <label class="done"><input type="checkbox" data-lesson="l9"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l10" data-title="10. Git и сдача">
+  <h2>Урок 10. Git: как сдать работу</h2>
+  <p>Все результаты сдаются <b>загрузкой файлов в репозиторий</b>. Загружать нужно по ходу каждого задания, а не в последнюю минуту.</p>
+
+  <h3>Что понадобится один раз</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>git config --global user.name "Иван Иванов"
+git config --global user.email "ivan@example.com"
+git clone АДРЕС_РЕПОЗИТОРИЯ</pre></div>
+  <p>Адрес репозитория и логин/пароль выдаёт технический эксперт. Команда <code>clone</code> создаёт на компьютере папку-копию репозитория — работайте внутри неё.</p>
+
+  <h3>Три команды, которые вы будете повторять</h3>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>git add .
+git commit -m "Задание 1: база данных, скрипт и ER-диаграмма"
+git push</pre></div>
+  <ul>
+    <li><code>git add .</code> — «отметить все изменённые файлы к сохранению».</li>
+    <li><code>git commit -m "..."</code> — сохранить «снимок» с пояснением.</li>
+    <li><code>git push</code> — отправить снимок на сервер. Только после этого эксперт увидит работу.</li>
+  </ul>
+  <p>Проверка: <code>git status</code> должен писать «nothing to commit, working tree clean».</p>
+
+  <h3>Что должно лежать в репозитории</h3>
+  <div class="diagram"><pre>репозиторий/
+├── README.md              ← описание функциональности
+├── src/ (или app/)        ← исходный код: папки и файлы, НЕ архив
+├── db/
+│   ├── db_script.sql      ← структура + данные
+│   └── er_diagram.pdf     ← ER-диаграмма
+├── bin/ (или dist/)       ← исполняемые файлы
+└── resources/             ← картинки, логотип, иконка</pre></div>
+  <p><b>Исходный код загружают именно структурой файлов, а не архивом</b> — .zip или .rar вместо папки считается ошибкой.</p>
+
+  <h3>Исполняемый файл для Python</h3>
+  <p>Если на рабочем месте есть <code>pyinstaller</code>, получить <code>.exe</code> можно так:</p>
+  <div class="code-block"><button class="copy" type="button">Копировать</button><pre>pip install pyinstaller
+pyinstaller --onefile --windowed --add-data "resources;resources" main.py</pre></div>
+  <p>Готовый файл появится в папке <code>dist</code>. Если инструмента нет, а интернета нет — уточните у эксперта, что считать «исполняемыми файлами» для вашего стека.</p>
+
+  <h3>README.md</h3>
+  <p>Пример шаблона есть на главной странице гайда, в блоке «Сдача». Пишите конкретно: что программа умеет, как запустить, из чего состоит репозиторий. Не пишите «удобная и красивая программа» — пишите «вход по логину, каталог с поиском, оформление заказа с пересчётом остатков».</p>
+  <div class="tip">Добавьте файл <code>.gitignore</code> со строкой <code>__pycache__/</code>, чтобы служебные файлы Python не попали в репозиторий.</div>
+  <label class="done"><input type="checkbox" data-lesson="l10"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l11" data-title="11. Ошибки">
+  <h2>Урок 11. Что делать, когда ничего не работает</h2>
+
+  <h3>11.1. Как читать красный текст (traceback)</h3>
+  <p>Когда программа падает, Python печатает цепочку вызовов. Читайте <b>снизу вверх</b>: последняя строка — что случилось, строка над ней — где.</p>
+  <div class="code-block"><pre>Traceback (most recent call last):
+  File "main.py", line 12, in &lt;module&gt;
+    print(calc_total(items))
+  File "rules.py", line 31, in calc_order_total
+    return sum(item["unit_price"] * item["quantity"] for item in order_items)
+KeyError: 'unit_price'</pre></div>
+  <p>Читаем: ошибка <code>KeyError</code> — «в словаре нет ключа <code>unit_price</code>», произошла в файле <code>rules.py</code> на 31-й строке. Идём туда и смотрим, откуда берётся этот словарь и почему в нём нет нужного поля.</p>
+
+  <h3>11.2. Частые ошибки и лечение</h3>
+  <table class="plain wide">
+    <thead><tr><th>Что видите</th><th>Что значит</th><th>Что делать</th></tr></thead>
+    <tbody>
+      <tr><td><code>ModuleNotFoundError: No module named 'psycopg2'</code></td><td>Библиотека не установлена</td><td><code>pip install psycopg2-binary</code></td></tr>
+      <tr><td><code>connection refused</code> / <code>could not connect to server</code></td><td>PostgreSQL не запущен или неверный хост/порт</td><td>Проверьте службу PostgreSQL, порт в <code>config.py</code></td></tr>
+      <tr><td><code>password authentication failed</code></td><td>Неверный пароль</td><td>Поправьте пароль в <code>config.py</code></td></tr>
+      <tr><td><code>database "shoe_store" does not exist</code></td><td>Базы с таким именем нет</td><td>Создайте её или поправьте <code>dbname</code></td></tr>
+      <tr><td><code>relation "product" does not exist</code></td><td>Таблицы нет — скрипт не выполнялся в этой базе</td><td>Выполните <code>schema.sql</code> именно в нужной БД</td></tr>
+      <tr><td><code>violates foreign key constraint</code></td><td>Ссылаетесь на несуществующую запись</td><td>Загрузите сначала справочник, потом остальное</td></tr>
+      <tr><td><code>violates not-null constraint</code></td><td>Не заполнено обязательное поле</td><td>Проверьте данные и порядок столбцов в <code>INSERT</code></td></tr>
+      <tr><td><code>IndentationError</code></td><td>Сбились отступы</td><td>Выровняйте блок: везде по 4 пробела, без табуляций</td></tr>
+      <tr><td><code>TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'</code></td><td>Перемножили Decimal и обычное дробное число</td><td>Используйте <code>Decimal("0.25")</code></td></tr>
+      <tr><td><code>_tkinter.TclError: image ... doesn't exist</code> / картинка не показывается</td><td>Формат или путь картинки</td><td>В tkinter без Pillow открываются PNG и GIF; проверьте путь</td></tr>
+      <tr><td>Кракозябры вместо русского текста в SQL-файле</td><td>Неверная кодировка</td><td>Сохраняйте файлы в UTF-8</td></tr>
+    </tbody>
+  </table>
+
+  <h3>11.3. Приём «разделяй и проверяй»</h3>
+  <ol>
+    <li>Не работает целое — проверьте по частям. Сначала SQL-запрос в pgAdmin: вернул ли он то, что надо?</li>
+    <li>Затем функцию из <code>database.py</code> отдельно: добавьте внизу файла <code>print(load_catalog())</code> и запустите.</li>
+    <li>Затем правила: <code>print(stock_label(5))</code>.</li>
+    <li>И только потом — окно.</li>
+  </ol>
+  <p><code>print()</code> — ваш главный инструмент отладки: выводите значения и смотрите, что на самом деле лежит в переменных.</p>
+  <label class="done"><input type="checkbox" data-lesson="l11"> Урок пройден</label>
+</section>
+
+<!-- ====================================================== -->
+<section class="lesson" id="l12" data-title="12. Экзамен">
+  <h2>Урок 12. План действий на экзамене</h2>
+  <h3>Перед стартом (15 минут на ознакомление — они не входят в время)</h3>
+  <ul>
+    <li>Прочитайте все приложения: предметную область, ресурсы, руководство по стилю.</li>
+    <li>Выпишите на листок: названия таблиц, ключевой параметр, пороги скидки/подсветки, цвета и шрифты.</li>
+    <li>Если непонятна формулировка — задайте вопрос эксперту. Решение подсказывать он не будет.</li>
+    <li>Проверьте среду: открывается ли IDE, СУБД, получается ли <code>git clone</code>.</li>
+  </ul>
+
+  <h3>Тайминг ГИА ДЭ БУ (3 ч 30 мин)</h3>
+  <table class="plain wide">
+    <thead><tr><th>Задание</th><th>Время</th><th>К какому моменту готово</th><th>Главное</th></tr></thead>
+    <tbody>
+      <tr><td>1. База данных</td><td>50 мин</td><td>0:50</td><td>3НФ, импорт, ER (PDF), скрипт с данными</td></tr>
+      <tr><td>2. Приложение, каталог</td><td>40 мин</td><td>1:30</td><td>Поля по макету, скидка, «много/мало», подсветка, заглушка</td></tr>
+      <tr><td>3. Вход и заказ</td><td>60 мин</td><td>2:30</td><td>Поиск+фильтр+сортировка, форма товара, заказ, ошибки</td></tr>
+      <tr><td>4. Заказы и сдача</td><td>60 мин</td><td>3:30</td><td>Роли, состав заказа, README, репозиторий</td></tr>
+    </tbody>
+  </table>
+  <p>Для ПА — только задания 1 и 2, всего 1 ч 30 мин.</p>
+
+  <h3>Золотые правила</h3>
+  <ol class="big-list">
+    <li><b>Сначала работающее, потом красивое.</b> Лучше простой рабочий каталог, чем недоделанный, но с кучей украшений.</li>
+    <li><b>Коммитьте после каждого задания.</b> Сбой компьютера не должен стоить вам всей работы.</li>
+    <li><b>Не зависайте.</b> Застряли на одном пункте больше 10 минут — оставьте заметку «TODO» и двигайтесь дальше. Вернётесь в конце.</li>
+    <li><b>Запускайте программу после каждого небольшого изменения,</b> а не после часа правок: иначе непонятно, что сломалось.</li>
+    <li><b>Перед сдачей — «чужие глаза».</b> Пройдите список типичных ошибок на главной странице гайда: он составлен из того, на чём теряют баллы.</li>
+    <li><b>Время на сдачу.</b> Последние 5–10 минут — только <code>git add / commit / push</code> и проверка, что файлы видны в репозитории.</li>
+    <li><b>Интернет</b> — только справка, до 15 минут, без входа в аккаунты. Всё нужное лучше знать заранее.</li>
+  </ol>
+
+  <h3>Минимальный набор, который нельзя забыть</h3>
+  <ul class="check-plain">
+    <li>База данных в 3НФ, ключи заданы, данные загружены.</li>
+    <li>ER-диаграмма в PDF и скрипт БД с данными.</li>
+    <li>Название компании в названии приложения; стиль по Приложению 3.</li>
+    <li>Каталог: все поля, «много/мало», подсветка, заглушка, скидка 25%.</li>
+    <li>Вход по логину, ФИО справа вверху, «Назад», заголовки окон.</li>
+    <li>Окна ошибок/предупреждений с понятным текстом; приложение не падает.</li>
+    <li>Поиск + фильтр + сортировка онлайн и вместе.</li>
+    <li>Форма товара, заказ, пересчёт остатков.</li>
+    <li>Заказы для менеджера и администратора, права разделены.</li>
+    <li>Код структурой (не архивом), README.md, всё запушено.</li>
+  </ul>
+  <label class="done"><input type="checkbox" data-lesson="l12"> Урок пройден</label>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p>Учебный проект — упрощённая реализация образца заданий из КИМ 09.02.07-2-2027. Он не гарантирует полного соответствия требованиям вашего варианта: всегда сверяйтесь с вашим заданием и Приложениями 1–3. <a href="index.html">← К общему гайду</a></p>
+</footer>
+
+<script src="beginner.js"></script>
+</body>
+</html>
